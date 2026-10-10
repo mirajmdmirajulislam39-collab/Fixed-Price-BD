@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#153c2c">
+<title>Fixed Price BD | Online Shop</title>
+<style>
+:root{--green:#153c2c;--green2:#21734d;--cream:#f6f8f5;--ink:#17211b;--muted:#647067;--line:#e1e8e2;--orange:#ffb21c}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",Arial,sans-serif;color:var(--ink);background:var(--cream)}
+header{background:var(--green);color:white;padding:18px 16px 16px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0002}
+.wrap{max-width:1000px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:900;font-size:22px;letter-spacing:.3px}.sub{font-size:12px;color:#dcebe1;margin-top:3px}.cartbtn{border:0;border-radius:12px;padding:10px 12px;background:#fff;color:var(--green);font-weight:800;cursor:pointer}
+.hero{padding:25px 16px 20px;background:linear-gradient(135deg,#e8f3e9,#fff7e6)}.hero h1{margin:0 0 8px;font-size:27px;color:var(--green)}.hero p{margin:0;color:#45564a;line-height:1.6}
+.searchrow{display:flex;gap:8px;margin-top:15px}.searchrow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;background:white}
+main{padding:20px 14px 90px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}.sectionhead h2{font-size:20px;margin:0}.hint{font-size:12px;color:var(--muted)}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #183b2510}.photo{height:140px;background:#edf3ed;display:flex;align-items:center;justify-content:center;font-size:42px;color:#5d7966}.photo img{width:100%;height:100%;object-fit:cover}.info{padding:12px}.name{font-weight:800;line-height:1.35;min-height:40px}.desc{font-size:12px;color:var(--muted);margin:5px 0 10px;line-height:1.45}.price{font-weight:900;font-size:18px;color:var(--green)}.old{font-size:12px;color:#8a948d;text-decoration:line-through;margin-left:5px}.add{width:100%;margin-top:10px;border:0;border-radius:10px;padding:11px 8px;background:var(--green2);color:#fff;font-weight:800;font-size:14px;cursor:pointer}.add:active,.primary:active{transform:scale(.99)}
+.panel{display:none;background:white;border:1px solid var(--line);border-radius:16px;padding:15px;margin:18px 0}.panel.open{display:block}.panel h2{margin:0 0 12px;font-size:20px}.cartline{display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}.cartname{font-weight:700}.qty{display:flex;align-items:center;gap:8px}.qty button{width:28px;height:28px;border:1px solid var(--line);background:#f7faf7;border-radius:8px;font-size:17px}.total{display:flex;justify-content:space-between;font-size:18px;font-weight:900;padding:14px 0}
+form{display:grid;gap:10px}label{font-size:13px;font-weight:700}input,textarea,select{font:inherit;width:100%;padding:12px;border:1px solid #d5dfd7;border-radius:10px;background:white}textarea{min-height:75px;resize:vertical}.primary{border:0;border-radius:11px;background:var(--orange);color:#241b08;font-weight:900;padding:13px;cursor:pointer;font-size:15px}.secondary{border:1px solid var(--line);background:white;border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
+.note{font-size:12px;color:var(--muted);line-height:1.6;margin:10px 0 0}.empty{font-size:14px;color:var(--muted);padding:8px 0}footer{background:#10281e;color:#e6f0e9;text-align:center;padding:22px 14px;font-size:13px;line-height:1.9}footer a{color:#ffcf62} .wa-float{position:fixed;bottom:15px;right:14px;background:#1b9b59;color:white;text-decoration:none;font-weight:800;padding:12px 15px;border-radius:99px;box-shadow:0 4px 15px #0003;z-index:6}
+@media(min-width:650px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:180px}.hero h1{font-size:34px}.products .info{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><div><div class="brand">FIXED PRICE BD</div><div class="sub">Retail & Wholesale • Home Delivery All Over Bangladesh</div></div><button class="cartbtn" onclick="toggleCart()">🛒 কার্ট <span id="cartCount">0</span></button></div></header>
+<section class="hero"><div class="wrap"><h1>পছন্দের পণ্য কিনুন সহজেই!</h1><p>খুচরা ও পাইকারি বিক্রি করা হয়। পণ্য কার্টে যোগ করুন, ঠিকানা দিন এবং WhatsApp-এ অর্ডার নিশ্চিত করুন।</p><div class="searchrow"><input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন..." oninput="renderProducts()"></div></div></section>
+<main class="wrap">
+  <div class="sectionhead"><h2>🛍️ আমাদের পণ্য</h2><span class="hint">নমুনা পণ্য—নিজের পণ্য দিয়ে বদলান</span></div>
+  <div id="products" class="products"></div>
+  <section id="cartPanel" class="panel">
+    <h2>🛒 আপনার কার্ট</h2><div id="cartItems"></div><div class="total"><span>সর্বমোট</span><span id="grandTotal">৳০</span></div>
+    <button class="primary" style="width:100%" onclick="showCheckout()">চেকআউটে যান</button>
+    <p class="note">ডেলিভারি চার্জ ঠিকানা অনুযায়ী আলাদাভাবে নিশ্চিত করা হবে।</p>
+  </section>
+  <section id="checkoutPanel" class="panel">
+    <h2>📦 অর্ডার চেকআউট</h2>
+    <form id="checkoutForm">
+      <div><label for="customer">আপনার নাম *</label><input id="customer" required placeholder="সম্পূর্ণ নাম"></div>
+      <div><label for="phone">মোবাইল নম্বর *</label><input id="phone" type="tel" required inputmode="tel" placeholder="01XXXXXXXXX"></div>
+      <div><label for="district">জেলা *</label><input id="district" required placeholder="আপনার জেলার নাম"></div>
+      <div><label for="area">থানা / উপজেলা *</label><input id="area" required placeholder="থানা বা উপজেলার নাম"></div>
+      <div><label for="address">সম্পূর্ণ ঠিকানা *</label><textarea id="address" required placeholder="গ্রাম/এলাকা, ইউনিয়ন/ওয়ার্ড, পরিচিত স্থান"></textarea></div>
+      <div><label for="payment">পেমেন্ট পদ্ধতি</label><select id="payment"><option>ক্যাশ অন ডেলিভারি (পণ্য পেয়ে টাকা)</option></select></div>
+      <div><label for="extra">অতিরিক্ত নির্দেশনা (ঐচ্ছিক)</label><textarea id="extra" placeholder="সাইজ, রং বা ডেলিভারি সংক্রান্ত তথ্য"></textarea></div>
+      <button class="primary" type="submit">WhatsApp-এ অর্ডার পাঠান</button>
+      <button class="secondary" type="button" onclick="toggleCart()">কার্টে ফিরে যান</button>
+    </form>
+    <p class="note">অর্ডার পাঠালে WhatsApp খুলবে। সেখানে মেসেজটি Send করতে হবে। এই ফ্রি ডেমো নিজে থেকে সার্ভারে অর্ডার সংরক্ষণ করে না।</p>
+  </section>
+</main>
+<footer><strong>FIXED PRICE BD</strong><br>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢<br>Retail & Wholesale<br>📞 WhatsApp & imo: <a href="https://wa.me/8801865146318">01865146318</a><br>🚚 সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br>Home Delivery All Over Bangladesh</footer>
+<a class="wa-float" href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp</a>
+<script>
+// আপনার পণ্য এখানে সম্পাদনা করুন। ছবি দিতে photo-তে সরাসরি image URL বসান; না থাকলে emoji দেখাবে।
+const productsData = [
+ {id:1,name:"পণ্যের নাম ১",price:250,oldPrice:350,desc:"এখানে পণ্যের ছোট বিবরণ লিখুন।",photo:"🛍️"},
+ {id:2,name:"পণ্যের নাম ২",price:350,oldPrice:450,desc:"এখানে পণ্যের ছোট বিবরণ লিখুন।",photo:"🎁"},
+ {id:3,name:"পণ্যের নাম ৩",price:150,oldPrice:200,desc:"এখানে পণ্যের ছোট বিবরণ লিখুন।",photo:"✨"},
+ {id:4,name:"পণ্যের নাম ৪",price:120,oldPrice:180,desc:"এখানে পণ্যের ছোট বিবরণ লিখুন।",photo:"💝"}
+];
+const cart = {};
+const money = n => "৳" + Number(n).toLocaleString("bn-BD");
+function renderProducts(){
+ const q=(document.getElementById("search").value||"").trim().toLowerCase();
+ const list=productsData.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+ document.getElementById("products").innerHTML=list.map(p=>`<article class="card"><div class="photo">${p.photo.startsWith("http")?`<img src="${p.photo}" alt="${p.name}">`:p.photo}</div><div class="info"><div class="name">${p.name}</div><div class="desc">${p.desc}</div><div><span class="price">${money(p.price)}</span> <span class="old">${money(p.oldPrice)}</span></div><button class="add" onclick="addToCart(${p.id})">কার্টে যোগ করুন</button></div></article>`).join("")||'<p class="empty">কোনো পণ্য পাওয়া যায়নি।</p>';
+}
+function addToCart(id){cart[id]=(cart[id]||0)+1;updateCart();document.getElementById("cartPanel").classList.add("open");document.getElementById("checkoutPanel").classList.remove("open");}
+function updateCart(){
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);
+ document.getElementById("cartCount").textContent=entries.reduce((s,[id,q])=>s+q,0);
+ document.getElementById("cartItems").innerHTML=entries.length?entries.map(([id,q])=>{const p=productsData.find(x=>x.id===Number(id));return `<div class="cartline"><div><div class="cartname">${p.name}</div><div class="hint">${money(p.price)} × ${q} = ${money(p.price*q)}</div></div><div class="qty"><button onclick="changeQty(${p.id},-1)" aria-label="কম">−</button><b>${q}</b><button onclick="changeQty(${p.id},1)" aria-label="বাড়ান">+</button></div></div>`}).join(""):'<div class="empty">আপনার কার্ট খালি। আগে পণ্য যোগ করুন।</div>';
+ document.getElementById("grandTotal").textContent=money(entries.reduce((s,[id,q])=>s+productsData.find(p=>p.id===Number(id)).price*q,0));
+}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCart();}
+function toggleCart(){document.getElementById("cartPanel").classList.toggle("open");document.getElementById("checkoutPanel").classList.remove("open");}
+function showCheckout(){if(!Object.values(cart).some(q=>q>0)){alert("আগে কার্টে পণ্য যোগ করুন।");return;}document.getElementById("cartPanel").classList.remove("open");document.getElementById("checkoutPanel").classList.add("open");document.getElementById("checkoutPanel").scrollIntoView({behavior:"smooth",block:"start"});}
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+ e.preventDefault();const entries=Object.entries(cart).filter(([id,q])=>q>0);if(!entries.length){alert("কার্ট খালি।");return;}
+ const items=entries.map(([id,q])=>{const p=productsData.find(x=>x.id===Number(id));return `• ${p.name} — ${q}টি × ${p.price} = ${p.price*q} টাকা`;}).join("\n");
+ const total=entries.reduce((s,[id,q])=>s+productsData.find(p=>p.id===Number(id)).price*q,0);
+ const msg=`নতুন অর্ডার — Fixed Price BD\n\n${items}\n\nপণ্যের মোট মূল্য: ${total} টাকা\nপেমেন্ট: ${document.getElementById("payment").value}\n\nক্রেতার নাম: ${document.getElementById("customer").value}\nমোবাইল: ${document.getElementById("phone").value}\nজেলা: ${document.getElementById("district").value}\nথানা/উপজেলা: ${document.getElementById("area").value}\nঠিকানা: ${document.getElementById("address").value}\nঅতিরিক্ত নির্দেশনা: ${document.getElementById("extra").value||"নেই"}\n\nদয়া করে অর্ডারটি নিশ্চিত করুন।`;
+ window.open("https://wa.me/8801865146318?text="+encodeURIComponent(msg),"_blank");
+});
+renderProducts();updateCart();
+</script>
+</body>
+</html>

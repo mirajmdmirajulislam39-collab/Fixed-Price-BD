@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="bn">
 <head>
@@ -11,10 +12,10 @@
 body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--ink)}
 header{background:linear-gradient(125deg,#073b3a,#0f766e);color:#fff;padding:22px 16px 18px}
 header .top{max-width:1080px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.brand{font-weight:900;font-size:24px;letter-spacing:.2px}
+.brand{font-weight:900;font-size:24px}
 .sub{font-size:13px;opacity:.9}
 .cartbtn{background:#fff;color:#075e58;border:0;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer}
-.adminbtn{background:#fef3c7;color:#78350f;border:0;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;text-decoration:none;white-space:nowrap}
+.adminbtn{background:#fef3c7;color:#78350f;border:0;border-radius:999px;padding:10px 14px;font-weight:800;text-decoration:none;white-space:nowrap}
 .hero{max-width:1080px;margin:18px auto 0;padding:0 16px}
 .hero h1{font-size:clamp(24px,5vw,38px);line-height:1.2;margin:0 0 8px}
 .hero p{margin:0;color:#e0f2f1}
@@ -55,148 +56,257 @@ header .top{max-width:1080px;margin:auto;display:flex;align-items:center;justify
 </head>
 <body>
 <header>
-<div class="top">
-<div>
-<div class="brand">FIXED PRICE BD</div>
-<div class="sub">Retail & Wholesale • Home Delivery All Over Bangladesh</div>
-</div>
-<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-<a class="adminbtn" href="./admin.html">🔐 অ্যাডমিন লগইন</a>
-<button class="cartbtn" id="openCart">🛒 কার্ট <span id="cartCount">0</span></button>
-</div>
-</div>
-<div class="hero">
-<h1>পছন্দের পণ্য, সাশ্রয়ী দামে</h1>
-<p>খুচরা ও পাইকারি অর্ডার নেওয়া হয় • অর্ডার করতে পণ্য কার্টে যোগ করুন</p>
-</div>
+  <div class="top">
+    <div>
+      <div class="brand">FIXED PRICE BD</div>
+      <div class="sub">Retail & Wholesale • Home Delivery All Over Bangladesh</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <a class="adminbtn" href="./admin.html">🔐 অ্যাডমিন লগইন</a>
+      <button class="cartbtn" id="openCart">🛒 কার্ট <span id="cartCount">0</span></button>
+    </div>
+  </div>
+  <div class="hero">
+    <h1>পছন্দের পণ্য, সাশ্রয়ী দামে</h1>
+    <p>খুচরা ও পাইকারি অর্ডার নেওয়া হয় • অর্ডার করতে পণ্য কার্টে যোগ করুন</p>
+  </div>
 </header>
 
 <main class="wrap">
-<div class="tools">
-<input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন">
-<select id="sort" aria-label="দাম অনুযায়ী সাজান">
-<option value="default">সাজান: ডিফল্ট</option>
-<option value="low">দাম কম থেকে বেশি</option>
-<option value="high">দাম বেশি থেকে কম</option>
-</select>
-</div>
-<div class="grid" id="products"></div>
-<p class="note">পণ্যের দাম/ছবি আপডেট করতে Admin Panel ব্যবহার করুন।</p>
+  <div class="tools">
+    <input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন">
+    <select id="sort" aria-label="দাম অনুযায়ী সাজান">
+      <option value="default">সাজান: ডিফল্ট</option>
+      <option value="low">দাম কম থেকে বেশি</option>
+      <option value="high">দাম বেশি থেকে কম</option>
+    </select>
+  </div>
+  <div class="grid" id="products">
+    <div class="empty">পণ্য লোড হচ্ছে...</div>
+  </div>
+  <p class="note">পণ্যের নাম, দাম ও ছবি আপডেট করতে Admin Panel ব্যবহার করুন।</p>
 </main>
 
 <footer class="footer">
-<b>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢</b><br>
-📞 WhatsApp & imo: 01865146318<br>
-সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br>
-<a class="wa" href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন</a><br>
-<small>FIXED PRICE BD © 2026</small>
+  <b>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢</b><br>
+  📞 WhatsApp & imo: 01865146318<br>
+  সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br>
+  <a class="wa" href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন</a><br>
+  <small>FIXED PRICE BD © 2026</small>
 </footer>
 
 <div class="shade" id="shade"></div>
 <aside class="drawer" id="drawer">
-<div class="dhead">
-<h2>আপনার কার্ট</h2>
-<button class="close" id="closeCart">বন্ধ করুন ✕</button>
-</div>
-<div id="cartItems"></div>
-<div class="total" id="total">মোট: ৳০</div>
-<button class="checkout" id="checkout">WhatsApp-এ অর্ডার করুন</button>
-<p class="note">অর্ডার পাঠানোর আগে WhatsApp-এ আপনার ঠিকানা ও ফোন নম্বর লিখবেন।</p>
+  <div class="dhead">
+    <h2>আপনার কার্ট</h2>
+    <button class="close" id="closeCart">বন্ধ করুন ✕</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="total" id="total">মোট: ৳০</div>
+  <button class="checkout" id="checkout">WhatsApp-এ অর্ডার করুন</button>
+  <p class="note">অর্ডার পাঠানোর আগে WhatsApp-এ আপনার ঠিকানা ও ফোন নম্বর লিখবেন।</p>
 </aside>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-const products=[
-{id:1,name:'সেমিস ব্রা',price:350,old:500,desc:'আরামদায়ক দৈনন্দিন ব্যবহার',image:''},
-{id:2,name:'স্লিমিং বেল্ট',price:250,old:450,desc:'ব্যায়ামের সময় ব্যবহার উপযোগী',image:''},
-{id:3,name:'V-Line মাস্ক',price:250,old:350,desc:'স্কিন কেয়ার রুটিনের জন্য',image:''},
-{id:4,name:'TONO HIME জেল 100ml',price:120,old:300,desc:'Water-based lubricant gel',image:''}
-];
-
-let cart={};
-try{cart=JSON.parse(localStorage.getItem('fpbd_cart')||'{}')||{}}catch(e){cart={}}
-
-const $=s=>document.querySelector(s);
-const taka=n=>'৳'+Number(n).toLocaleString('en-BD');
-
-function render(){
-let q=$('#search').value.trim().toLowerCase();
-let list=products.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
-if($('#sort').value==='low')list.sort((a,b)=>a.price-b.price);
-if($('#sort').value==='high')list.sort((a,b)=>b.price-a.price);
-
-$('#products').innerHTML=list.length?list.map(p=>`
-<article class="product">
-<div class="photo">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy">`:'পণ্যের ছবি'}</div>
-<div class="pbody">
-<span class="tag">অফার</span>
-<div class="pname">${p.name}</div>
-<div class="sub" style="color:#667085">${p.desc}</div>
-<div class="price"><span class="now">${taka(p.price)}</span><span class="old">${taka(p.old)}</span></div>
-<button class="add" onclick="add(${p.id})">কার্টে যোগ করুন</button>
-</div>
-</article>`).join(''):'<div class="empty">কোনো পণ্য পাওয়া যায়নি।</div>';
-
-renderCart();
-}
-
-function add(id){
-cart[id]=(cart[id]||0)+1;
-save();
-openCart();
-}
-
-function save(){
-try{localStorage.setItem('fpbd_cart',JSON.stringify(cart))}catch(e){}
-renderCart();
-}
-
-function renderCart(){
-let entries=Object.entries(cart).filter(([id,n])=>n>0&&products.some(p=>p.id===+id));
-let count=entries.reduce((s,[id,n])=>s+n,0);
-let sum=entries.reduce((s,[id,n])=>s+products.find(p=>p.id===+id).price*n,0);
-$('#cartCount').textContent=count;
-$('#total').textContent='মোট: '+taka(sum);
-$('#cartItems').innerHTML=entries.length?entries.map(([id,n])=>{
-let p=products.find(p=>p.id===+id);
-return `<div class="cartrow"><div><b>${p.name}</b><br><span class="sub">${taka(p.price)} × ${n}</span></div><div class="qty"><button onclick="change(${id},-1)">−</button><b>${n}</b><button onclick="change(${id},1)">+</button></div></div>`;
-}).join(''):'<p>কার্ট খালি। পণ্য যোগ করুন।</p>';
-$('#checkout').disabled=!entries.length;
-}
-
-function change(id,d){
-cart[id]=(cart[id]||0)+d;
-if(cart[id]<=0)delete cart[id];
-save();
-}
-
-function openCart(){
-$('#drawer').classList.add('open');
-$('#shade').classList.add('open');
-}
-
-function closeCart(){
-$('#drawer').classList.remove('open');
-$('#shade').classList.remove('open');
-}
-
-$('#openCart').onclick=openCart;
-$('#closeCart').onclick=closeCart;
-$('#shade').onclick=closeCart;
-$('#search').oninput=render;
-$('#sort').onchange=render;
-
-$('#checkout').onclick=()=>{
-let entries=Object.entries(cart).filter(([id,n])=>n>0&&products.some(p=>p.id===+id));
-let lines=entries.map(([id,n])=>{
-let p=products.find(p=>p.id===+id);
-return `${p.name} — ${n}টি × ${p.price} = ${p.price*n} টাকা`;
-});
-let total=entries.reduce((s,[id,n])=>s+products.find(p=>p.id===+id).price*n,0);
-let msg='আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই.\n\n'+lines.join('\n')+'\n\nমোট: '+total+' টাকা\nনাম:\nঠিকানা:\nমোবাইল:';
-window.open('https://wa.me/8801865146318?text='+encodeURIComponent(msg),'_blank','noopener');
+const firebaseConfig = {
+  apiKey: "AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",
+  authDomain: "fixed-price-bd.firebaseapp.com",
+  projectId: "fixed-price-bd",
+  storageBucket: "fixed-price-bd.firebasestorage.app",
+  messagingSenderId: "1055121018003",
+  appId: "1:1055121018003:web:f1bcebcb16376fa8bb9166",
+  measurementId: "G-BWZF99N2TV"
 };
 
-render();
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+let products = [];
+let cart = {};
+
+try {
+  cart = JSON.parse(localStorage.getItem('fpbd_cart') || '{}') || {};
+} catch (e) {
+  cart = {};
+}
+
+const $ = s => document.querySelector(s);
+const taka = n => '৳' + Number(n || 0).toLocaleString('en-BD');
+
+function safeText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+async function loadProducts() {
+  $('#products').innerHTML = '<div class="empty">পণ্য লোড হচ্ছে...</div>';
+
+  try {
+    const snapshot = await db.collection('products').get();
+
+    products = snapshot.docs.map(doc => {
+      const p = doc.data();
+      return {
+        id: doc.id,
+        name: String(p.name || 'নাম দেওয়া হয়নি'),
+        price: Number(p.price) || 0,
+        old: Number(p.oldPrice) || 0,
+        desc: String(p.desc || ''),
+        image: String(p.image || '')
+      };
+    });
+
+    render();
+  } catch (error) {
+    console.error('Firebase product loading error:', error);
+    $('#products').innerHTML =
+      '<div class="empty">পণ্য লোড হচ্ছে না। Firebase Firestore Rules ও সংযোগ পরীক্ষা করুন।</div>';
+  }
+}
+
+function render() {
+  const q = $('#search').value.trim().toLowerCase();
+
+  let list = products.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.desc.toLowerCase().includes(q)
+  );
+
+  if ($('#sort').value === 'low') list.sort((a,b) => a.price - b.price);
+  if ($('#sort').value === 'high') list.sort((a,b) => b.price - a.price);
+
+  $('#products').innerHTML = list.length ? list.map(p => {
+    const imageUrl = /^https?:\/\//i.test(p.image) ? p.image : '';
+
+    return `
+      <article class="product">
+        <div class="photo">
+          ${imageUrl
+            ? `<img src="${safeText(imageUrl)}" alt="${safeText(p.name)}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='ছবি লোড হয়নি'">`
+            : 'পণ্যের ছবি নেই'}
+        </div>
+        <div class="pbody">
+          <span class="tag">অফার</span>
+          <div class="pname">${safeText(p.name)}</div>
+          <div class="sub" style="color:#667085">${safeText(p.desc)}</div>
+          <div class="price">
+            <span class="now">${taka(p.price)}</span>
+            ${p.old > 0 ? `<span class="old">${taka(p.old)}</span>` : ''}
+          </div>
+          <button class="add" data-add="${safeText(p.id)}">কার্টে যোগ করুন</button>
+        </div>
+      </article>`;
+  }).join('') : '<div class="empty">এখনো কোনো পণ্য যোগ করা হয়নি।</div>';
+
+  renderCart();
+}
+
+function add(id) {
+  cart[id] = (Number(cart[id]) || 0) + 1;
+  save();
+  openCart();
+}
+
+function save() {
+  try {
+    localStorage.setItem('fpbd_cart', JSON.stringify(cart));
+  } catch (e) {}
+  renderCart();
+}
+
+function renderCart() {
+  const entries = Object.entries(cart).filter(([id,n]) =>
+    Number(n) > 0 && products.some(p => p.id === id)
+  );
+
+  const count = entries.reduce((s,[id,n]) => s + Number(n), 0);
+  const sum = entries.reduce((s,[id,n]) =>
+    s + products.find(p => p.id === id).price * Number(n), 0
+  );
+
+  $('#cartCount').textContent = count;
+  $('#total').textContent = 'মোট: ' + taka(sum);
+
+  $('#cartItems').innerHTML = entries.length ? entries.map(([id,n]) => {
+    const p = products.find(p => p.id === id);
+    return `
+      <div class="cartrow">
+        <div>
+          <b>${safeText(p.name)}</b><br>
+          <span class="sub">${taka(p.price)} × ${Number(n)}</span>
+        </div>
+        <div class="qty">
+          <button data-change="${safeText(id)}" data-delta="-1">−</button>
+          <b>${Number(n)}</b>
+          <button data-change="${safeText(id)}" data-delta="1">+</button>
+        </div>
+      </div>`;
+  }).join('') : '<p>কার্ট খালি। পণ্য যোগ করুন।</p>';
+
+  $('#checkout').disabled = !entries.length;
+}
+
+function change(id, delta) {
+  cart[id] = (Number(cart[id]) || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  save();
+}
+
+function openCart() {
+  $('#drawer').classList.add('open');
+  $('#shade').classList.add('open');
+}
+
+function closeCart() {
+  $('#drawer').classList.remove('open');
+  $('#shade').classList.remove('open');
+}
+
+$('#products').addEventListener('click', event => {
+  const addButton = event.target.closest('[data-add]');
+  if (addButton) add(addButton.dataset.add);
+
+  const changeButton = event.target.closest('[data-change]');
+  if (changeButton) {
+    change(changeButton.dataset.change, Number(changeButton.dataset.delta));
+  }
+});
+
+$('#openCart').onclick = openCart;
+$('#closeCart').onclick = closeCart;
+$('#shade').onclick = closeCart;
+$('#search').oninput = render;
+$('#sort').onchange = render;
+
+$('#checkout').onclick = () => {
+  const entries = Object.entries(cart).filter(([id,n]) =>
+    Number(n) > 0 && products.some(p => p.id === id)
+  );
+
+  if (!entries.length) return;
+
+  const lines = entries.map(([id,n]) => {
+    const p = products.find(p => p.id === id);
+    return `${p.name} — ${n}টি × ${p.price} = ${p.price * Number(n)} টাকা`;
+  });
+
+  const total = entries.reduce((s,[id,n]) =>
+    s + products.find(p => p.id === id).price * Number(n), 0
+  );
+
+  const msg = 'আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই.\n\n'
+    + lines.join('\n') + '\n\nমোট: ' + total
+    + ' টাকা\nনাম:\nঠিকানা:\nমোবাইল:';
+
+  window.open(
+    'https://wa.me/8801865146318?text=' + encodeURIComponent(msg),
+    '_blank'
+  );
+};
+
+loadProducts();
 </script>
 </body>
 </html>

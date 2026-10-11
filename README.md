@@ -1,1 +1,1 @@
-index html.com
+index.html

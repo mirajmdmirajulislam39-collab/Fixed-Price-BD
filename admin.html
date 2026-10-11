@@ -1,4 +1,400 @@
-<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fixed Price BD Admin</title><style>body{margin:0;background:#f4f7fb;color:#182334;font-family:system-ui,"Noto Sans Bengali",sans-serif}.wrap{max-width:720px;margin:24px auto;padding:16px}.card{background:white;border:1px solid #e0e6ee;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 18px #16233a08}h1{font-size:25px;margin:0 0 6px}label{display:block;font-weight:700;margin:12px 0 5px}input,textarea{width:100%;padding:12px;border:1px solid #cdd5df;border-radius:10px;font:inherit;box-sizing:border-box}button{border:0;border-radius:10px;padding:12px 15px;background:#0f766e;color:white;font-weight:800;font:inherit;cursor:pointer;margin-top:12px}button.secondary{background:#64748b}button.danger{background:#b42318}.row{display:flex;gap:8px;flex-wrap:wrap}.row button{flex:1}.muted{color:#64748b;font-size:14px}.status{padding:10px;border-radius:10px;background:#fef3c7;color:#854d0e;white-space:pre-wrap}.item{padding:12px 0;border-bottom:1px solid #e5e7eb}.hidden{display:none!important}</style></head><body><main class="wrap"><h1>FIXED PRICE BD — Admin Panel</h1><div class="muted">Firebase লগইন ও Firestore সেটআপের পর পণ্য পরিচালনা করুন।</div><div id="status" class="status">Firebase সংযোগ পরীক্ষা করা হচ্ছে…</div><section class="card" id="login"><h2>অ্যাডমিন লগইন</h2><label>ইমেইল</label><input id="email" type="email" autocomplete="username" placeholder="আপনার Firebase admin email"><label>পাসওয়ার্ড</label><input id="password" type="password" autocomplete="current-password" placeholder="পাসওয়ার্ড"><button id="signIn">লগইন করুন</button></section><section class="card hidden" id="panel"><div class="row"><h2 style="flex:1">পণ্য পরিচালনা</h2><button class="secondary" id="signOut">লগআউট</button></div><form id="form"><label>পণ্যের নাম</label><input id="name" required><label>বিক্রয় মূল্য (টাকা)</label><input id="price" type="number" min="0" required><label>আগের মূল্য (টাকা)</label><input id="oldPrice" type="number" min="0"><label>ছবির সরাসরি URL (ঐচ্ছিক)</label><input id="image" type="url" placeholder="https://..."><label>ছোট বিবরণ</label><textarea id="desc" rows="2"></textarea><button type="submit">পণ্য সংরক্ষণ করুন</button></form><h2>সংরক্ষিত পণ্য</h2><div id="list"></div></section><div class="card muted"><b>গুরুত্বপূর্ণ:</b> এই Admin Panel তখনই কাজ করবে যখন Firebase Web API Key ঠিক থাকবে, Authentication-এ আপনার অ্যাডমিন ইমেইল থাকবে এবং Firestore Rules নিরাপদভাবে সেট করা থাকবে। Rules-এ সবার জন্য read/write চালু করবেন না।</div></main><script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';import {getFirestore,collection,addDoc,getDocs,deleteDoc,doc,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-const firebaseConfig={apiKey:'AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ',authDomain:'fixed-price-bd.firebaseapp.com',projectId:'fixed-price-bd',storageBucket:'fixed-price-bd.firebasestorage.app',messagingSenderId:'1055121018003',appId:'1:1055121018003:web:f1bcebcb16376fa8bb9166',measurementId:'G-BWZF99N2TV'};const $=s=>document.querySelector(s);let auth,db;const status=(t)=>$('#status').textContent=t;try{const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);status('Firebase SDK চালু হয়েছে। লগইন পরীক্ষা করুন।')}catch(e){status('Firebase শুরু করা যায়নি: '+e.message)}$('#signIn').onclick=async()=>{try{await signInWithEmailAndPassword(auth,$('#email').value.trim(),$('#password').value);status('লগইন সফল।')}catch(e){status('লগইন ব্যর্থ: '+e.code+' — '+e.message)}};$('#signOut').onclick=()=>signOut(auth);onAuthStateChanged(auth,user=>{$('#login').classList.toggle('hidden',!!user);$('#panel').classList.toggle('hidden',!user);if(user){status('লগইন করা আছে: '+user.email);load()}});$('#form').onsubmit=async e=>{e.preventDefault();try{await addDoc(collection(db,'products'),{name:$('#name').value.trim(),price:Number($('#price').value),oldPrice:Number($('#oldPrice').value||0),image:$('#image').value.trim(),desc:$('#desc').value.trim(),createdAt:serverTimestamp()});e.target.reset();status('পণ্য সংরক্ষিত হয়েছে।');load()}catch(err){status('পণ্য সংরক্ষণ ব্যর্থ: '+err.code+' — '+err.message)}};async function load(){try{const snap=await getDocs(collection(db,'products'));$('#list').innerHTML='';snap.forEach(d=>{const x=d.data(),el=document.createElement('div');el.className='item';const title=document.createElement('b');title.textContent=x.name||'(নাম নেই)';const detail=document.createElement('div');detail.textContent='৳'+(x.price||0)+' — '+(x.desc||'');const del=document.createElement('button');del.className='danger';del.textContent='মুছুন';del.onclick=async()=>{if(confirm('এই পণ্যটি মুছবেন?')){try{await deleteDoc(doc(db,'products',d.id));load()}catch(e){status('মুছতে সমস্যা: '+e.code)}}};el.append(title,detail,del);$('#list').append(el)});if(!snap.size)$('#list').textContent='এখনও কোনো পণ্য নেই।'}catch(e){status('পণ্য লোড ব্যর্থ: '+e.code+' — Firestore Rules/সংযোগ পরীক্ষা করতে হবে।')}}
-</script></body></html>
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixed Price BD Admin</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#f4f7fb;
+  color:#182334;
+  font-family:system-ui,"Noto Sans Bengali",sans-serif
+}
+.wrap{max-width:720px;margin:24px auto;padding:16px}
+.card{
+  background:#fff;
+  border:1px solid #e0e6ee;
+  border-radius:16px;
+  padding:18px;
+  margin:14px 0;
+  box-shadow:0 4px 18px #16233a08
+}
+h1{font-size:25px;margin:0 0 6px}
+h2{font-size:21px}
+label{display:block;font-weight:700;margin:12px 0 5px}
+input,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #cdd5df;
+  border-radius:10px;
+  font:inherit;
+  background:white
+}
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 15px;
+  background:#0f766e;
+  color:white;
+  font-weight:800;
+  font:inherit;
+  cursor:pointer;
+  margin-top:12px
+}
+button.secondary{background:#64748b}
+button.danger{background:#b42318}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row button{flex:1}
+.muted{color:#64748b;font-size:14px}
+.status{
+  padding:12px;
+  border-radius:10px;
+  background:#fef3c7;
+  color:#854d0e;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+.item{padding:14px 0;border-bottom:1px solid #e5e7eb}
+.item img{
+  display:block;
+  max-width:120px;
+  max-height:120px;
+  object-fit:contain;
+  margin-top:8px;
+  border-radius:8px
+}
+.hidden{display:none!important}
+@media(max-width:480px){
+  .wrap{margin:8px auto;padding:10px}
+  .card{padding:14px}
+  h1{font-size:22px}
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  <h1>FIXED PRICE BD — Admin Panel</h1>
+  <div class="muted">অ্যাডমিন লগইন করে আপনার দোকানের পণ্য পরিচালনা করুন।</div>
+
+  <div id="status" class="status">Firebase সংযোগ পরীক্ষা করা হচ্ছে…</div>
+
+  <section class="card" id="login">
+    <h2>🔐 অ্যাডমিন লগইন</h2>
+
+    <label for="email">ইমেইল</label>
+    <input id="email" type="email" autocomplete="username"
+      placeholder="আপনার অ্যাডমিন ইমেইল" required>
+
+    <label for="password">পাসওয়ার্ড</label>
+    <input id="password" type="password"
+      autocomplete="current-password" placeholder="পাসওয়ার্ড" required>
+
+    <button id="signIn" type="button">লগইন করুন</button>
+  </section>
+
+  <section class="card hidden" id="panel">
+    <div class="row">
+      <h2 style="flex:1">📦 পণ্য পরিচালনা</h2>
+      <button class="secondary" id="signOut" type="button">লগআউট</button>
+    </div>
+
+    <form id="form">
+      <label for="name">পণ্যের নাম</label>
+      <input id="name" required maxlength="150">
+
+      <label for="price">বিক্রয় মূল্য (টাকা)</label>
+      <input id="price" type="number" min="0" step="0.01" required>
+
+      <label for="oldPrice">আগের মূল্য (টাকা)</label>
+      <input id="oldPrice" type="number" min="0" step="0.01">
+
+      <label for="image">ছবির সরাসরি URL (ঐচ্ছিক)</label>
+      <input id="image" type="url" placeholder="https://...">
+
+      <label for="desc">ছোট বিবরণ</label>
+      <textarea id="desc" rows="3" maxlength="2000"></textarea>
+
+      <button id="saveProduct" type="submit">পণ্য সংরক্ষণ করুন</button>
+    </form>
+
+    <h2>সংরক্ষিত পণ্য</h2>
+    <div id="list">পণ্য লোড হচ্ছে…</div>
+  </section>
+
+  <div class="card muted">
+    <b>গুরুত্বপূর্ণ:</b> Firebase Authentication-এ আপনার অ্যাডমিন অ্যাকাউন্ট থাকতে হবে।
+    Firestore Rules নিরাপদ রাখুন। সবার জন্য পণ্য যোগ বা মুছে ফেলার অনুমতি দেবেন না।
+  </div>
+
+</main>
+
+<script type="module">
+import { initializeApp } from
+  'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  setPersistence,
+  browserSessionPersistence
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ',
+  authDomain: 'fixed-price-bd.firebaseapp.com',
+  projectId: 'fixed-price-bd',
+  storageBucket: 'fixed-price-bd.firebasestorage.app',
+  messagingSenderId: '1055121018003',
+  appId: '1:1055121018003:web:f1bcebcb16376fa8bb9166',
+  measurementId: 'G-BWZF99N2TV'
+};
+
+const $ = selector => document.querySelector(selector);
+
+let auth;
+let db;
+let ready = false;
+let loading = false;
+
+function showStatus(message) {
+  $('#status').textContent = message;
+}
+
+function showError(prefix, error) {
+  showStatus(prefix + ': ' + (error.code || '') + ' — ' + error.message);
+}
+
+function setBusy(button, busy, text) {
+  button.disabled = busy;
+  if (busy) {
+    button.dataset.originalText = button.textContent;
+    button.textContent = text;
+  } else if (button.dataset.originalText) {
+    button.textContent = button.dataset.originalText;
+    delete button.dataset.originalText;
+  }
+}
+
+async function startFirebase() {
+  try {
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+
+    // লগইন ব্রাউজার সেশনের জন্য থাকবে।
+    await setPersistence(auth, browserSessionPersistence);
+
+    ready = true;
+    showStatus('Firebase চালু হয়েছে। অ্যাডমিন লগইন করুন।');
+  } catch (error) {
+    showError('Firebase শুরু করা যায়নি', error);
+  }
+}
+
+$('#signIn').addEventListener('click', async () => {
+  if (!ready) {
+    showStatus('Firebase চালু হওয়া পর্যন্ত অপেক্ষা করুন।');
+    return;
+  }
+
+  const email = $('#email').value.trim();
+  const password = $('#password').value;
+
+  if (!email || !password) {
+    showStatus('ইমেইল ও পাসওয়ার্ড লিখুন।');
+    return;
+  }
+
+  const button = $('#signIn');
+  setBusy(button, true, 'লগইন হচ্ছে…');
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    showStatus('লগইন সফল হয়েছে।');
+  } catch (error) {
+    showError('লগইন ব্যর্থ', error);
+  } finally {
+    setBusy(button, false);
+  }
+});
+
+$('#password').addEventListener('keydown', event => {
+  if (event.key === 'Enter') $('#signIn').click();
+});
+
+$('#signOut').addEventListener('click', async () => {
+  try {
+    await signOut(auth);
+    showStatus('লগআউট সম্পন্ন হয়েছে।');
+  } catch (error) {
+    showError('লগআউট ব্যর্থ', error);
+  }
+});
+
+onAuthStateChangedSafe();
+
+function onAuthStateChangedSafe() {
+  startFirebase().then(() => {
+    if (!ready) return;
+
+    onAuthStateChanged(auth, user => {
+      $('#login').classList.toggle('hidden', !!user);
+      $('#panel').classList.toggle('hidden', !user);
+
+      if (user) {
+        showStatus('লগইন করা আছে: ' + user.email);
+        loadProducts();
+      } else {
+        $('#list').textContent = 'লগইন করলে পণ্য দেখা যাবে।';
+      }
+    });
+  });
+}
+
+$('#form').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  if (!auth.currentUser) {
+    showStatus('পণ্য সংরক্ষণ করতে আগে অ্যাডমিন লগইন করুন।');
+    return;
+  }
+
+  const name = $('#name').value.trim();
+  const price = Number($('#price').value);
+  const oldPrice = Number($('#oldPrice').value || 0);
+  const image = $('#image').value.trim();
+  const desc = $('#desc').value.trim();
+
+  if (!name || !Number.isFinite(price) || price < 0 ||
+      !Number.isFinite(oldPrice) || oldPrice < 0) {
+    showStatus('পণ্যের নাম ও সঠিক মূল্য লিখুন।');
+    return;
+  }
+
+  const button = $('#saveProduct');
+  setBusy(button, true, 'সংরক্ষণ হচ্ছে…');
+
+  try {
+    await addDoc(collection(db, 'products'), {
+      name,
+      price,
+      oldPrice,
+      image,
+      desc,
+      createdAt: serverTimestamp()
+    });
+
+    event.target.reset();
+    showStatus('পণ্য সফলভাবে সংরক্ষণ হয়েছে।');
+    await loadProducts();
+  } catch (error) {
+    showError('পণ্য সংরক্ষণ ব্যর্থ', error);
+  } finally {
+    setBusy(button, false);
+  }
+});
+
+async function loadProducts() {
+  if (loading || !auth?.currentUser) return;
+  loading = true;
+
+  const list = $('#list');
+  list.textContent = 'পণ্য লোড হচ্ছে…';
+
+  try {
+    const snapshot = await getDocs(collection(db, 'products'));
+    list.replaceChildren();
+
+    if (snapshot.empty) {
+      list.textContent = 'এখনও কোনো পণ্য নেই।';
+      return;
+    }
+
+    snapshot.forEach(productDoc => {
+      const data = productDoc.data();
+      const item = document.createElement('div');
+      item.className = 'item';
+
+      const title = document.createElement('b');
+      title.textContent = data.name || '(নাম নেই)';
+
+      const detail = document.createElement('div');
+      detail.textContent =
+        'বিক্রয় মূল্য: ৳' + (data.price ?? 0) +
+        ' | আগের মূল্য: ৳' + (data.oldPrice ?? 0);
+
+      item.append(title, detail);
+
+      if (data.desc) {
+        const description = document.createElement('p');
+        description.textContent = data.desc;
+        item.append(description);
+      }
+
+      if (data.image) {
+        const image = document.createElement('img');
+        image.src = data.image;
+        image.alt = data.name || 'পণ্যের ছবি';
+        image.loading = 'lazy';
+        image.onerror = () => image.remove();
+        item.append(image);
+      }
+
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'danger';
+      deleteButton.type = 'button';
+      deleteButton.textContent = 'মুছুন';
+
+      deleteButton.addEventListener('click', async () => {
+        if (!auth.currentUser) {
+          showStatus('আপনার লগইন সেশন শেষ হয়েছে। আবার লগইন করুন।');
+          return;
+        }
+
+        if (!confirm('এই পণ্যটি মুছে ফেলবেন?')) return;
+
+        deleteButton.disabled = true;
+
+        try {
+          await deleteDoc(doc(db, 'products', productDoc.id));
+          showStatus('পণ্য মুছে ফেলা হয়েছে।');
+          await loadProductsAfterDelete();
+        } catch (error) {
+          showError('পণ্য মুছতে সমস্যা', error);
+          deleteButton.disabled = false;
+        }
+      });
+
+      item.append(deleteButton);
+      list.append(item);
+    });
+  } catch (error) {
+    showError('পণ্য লোড ব্যর্থ। Firestore Rules ও সংযোগ পরীক্ষা করুন', error);
+  } finally {
+    loading = false;
+  }
+}
+
+async function loadProductsAfterDelete() {
+  await loadProducts();
+}
+</script>
+</body>
+</html>

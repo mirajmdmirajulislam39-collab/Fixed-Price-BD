@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075e54">
+<title>Fixed Price BD | Online Store</title>
+<meta name="description" content="Fixed Price BD — Retail & Wholesale, home delivery all over Bangladesh">
+<style>
+:root{--ink:#152238;--muted:#64748b;--brand:#087f70;--hot:#e34e36;--bg:#f3f7f8;--card:#fff;--shadow:0 12px 32px rgba(15,45,55,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+a{color:inherit}
+.header{background:radial-gradient(circle at 85% 5%,#21a38c 0,transparent 33%),linear-gradient(125deg,#073b3a,#087f70 70%,#0e9380);color:#fff;padding:18px 16px 30px}
+.top,.hero,.wrap{max-width:1120px;margin-left:auto;margin-right:auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brandrow{display:flex;align-items:center;gap:11px}
+.logo{width:46px;height:46px;border-radius:15px;background:#fff;color:#087f70;display:grid;place-items:center;font-size:24px;font-weight:1000;box-shadow:0 5px 16px #001f1d40}
+.brand{font-size:23px;line-height:1.1;font-weight:950;letter-spacing:.2px}
+.sub{font-size:12px;opacity:.88;margin-top:5px}
+.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{border:0;border-radius:999px;padding:11px 15px;font:inherit;font-size:13px;font-weight:850;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.adminbtn{background:#fff3c4;color:#6b4300}.cartbtn{background:#fff;color:#075e54}
+.hero{padding:29px 0 0}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;border:1px solid #ffffff45;background:#ffffff15;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800}
+.hero h1{font-size:clamp(27px,5vw,44px);line-height:1.2;max-width:690px;margin:14px 0 10px;letter-spacing:-.5px}
+.hero p{margin:0;line-height:1.8;color:#e3fffa;max-width:650px;font-size:14px}
+.trust{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.trust span{font-size:12px;background:#ffffff18;border:1px solid #ffffff2c;padding:8px 11px;border-radius:12px}
+.wrap{padding:0 15px}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:27px 0 14px;flex-wrap:wrap}
+.sectionhead h2{font-size:22px;margin:0}.sectionhead p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.searchbox{flex:1;min-width:180px;position:relative}
+.searchbox span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:17px}
+.tools input,.tools select{width:100%;border:1px solid #d7e1e5;border-radius:14px;padding:13px;background:#fff;font:inherit;outline:none;min-width:0;box-shadow:0 3px 12px #102a2a06}
+.tools input{padding-left:42px}.tools input:focus,.tools select:focus{border-color:#0b9b87;box-shadow:0 0 0 3px #0b9b871b}
+.tools select{width:auto;min-width:155px}
+.status{padding:12px 14px;border-radius:13px;background:#e7f5f2;color:#075e54;font-size:13px;margin:0 0 15px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{background:var(--card);border:1px solid #e7edf0;border-radius:19px;overflow:hidden;box-shadow:0 4px 18px #18223008;display:flex;flex-direction:column;min-width:0;transition:transform .18s,box-shadow .18s}
+.product:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.photo{height:160px;background:linear-gradient(145deg,#e6f5f1,#f5fbfa);display:flex;align-items:center;justify-content:center;color:#5c827b;font-size:13px;overflow:hidden;position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .placeholder{font-size:42px;opacity:.7}
+.pbody{padding:13px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-size:10px;background:#fff0ed;color:#b83222;border-radius:99px;padding:5px 9px;width:max-content;font-weight:900}
+.pname{font-weight:850;line-height:1.45;font-size:15px;overflow-wrap:anywhere}
+.desc{color:var(--muted);font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.price{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:1px}
+.now{font-weight:950;color:var(--hot);font-size:20px}.old{color:#8b95a4;text-decoration:line-through;font-size:12px}
+.add{margin-top:auto;border:0;background:linear-gradient(110deg,var(--brand),#0c9a83);color:white;font-weight:850;border-radius:12px;padding:12px 10px;cursor:pointer;font:inherit;font-size:13px;box-shadow:0 5px 12px #087f7020}
+.add:active{transform:scale(.98)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:38px 12px;background:#fff;border:1px dashed #cad8dc;border-radius:18px;line-height:1.8}
+.note{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;margin:19px 0}
+.footer{background:#092e2d;color:white;text-align:center;padding:25px 14px;margin-top:32px;font-size:14px;line-height:1.9}
+.footer b{font-size:15px}
+.wa{color:#fff;background:#168b51;text-decoration:none;padding:11px 16px;border-radius:999px;display:inline-flex;font-weight:850;margin-top:9px;font-size:13px}
+.shade{position:fixed;inset:0;background:#07142577;display:none;z-index:9}
+.drawer{position:fixed;z-index:10;right:0;top:0;height:100dvh;width:min(430px,100%);background:#fff;transform:translateX(105%);transition:transform .22s;padding:18px;overflow:auto;box-shadow:-8px 0 30px #0002}
+.drawer.open{transform:translateX(0)}.shade.open{display:block}
+.dhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.dhead h2{font-size:21px}
+.close{border:0;background:#edf3f4;border-radius:10px;padding:9px 12px;font:inherit;cursor:pointer}
+.cartrow{display:grid;grid-template-columns:1fr auto;gap:8px;border-bottom:1px solid #e5e7eb;padding:13px 0}
+.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid #d6dce5;background:#fff;border-radius:8px;padding:4px 10px;font:inherit;cursor:pointer}
+.total{font-size:20px;font-weight:950;margin:18px 0}
+.checkout{width:100%;border:0;background:#168b51;color:#fff;border-radius:13px;padding:14px;font:inherit;font-size:15px;font-weight:900;cursor:pointer}
+.checkout:disabled{opacity:.4;cursor:not-allowed}
+@media(min-width:620px){.header{padding:22px 22px 35px}.hero{padding-top:34px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.photo{height:205px}.pbody{padding:15px}.wrap{padding:0 22px}}
+@media(min-width:920px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.header{padding-left:24px;padding-right:24px}}
+@media(max-width:390px){.brand{font-size:20px}.logo{width:41px;height:41px}.pill{padding:10px 11px;font-size:12px}.photo{height:140px}.pbody{padding:10px}.pname{font-size:14px}.now{font-size:18px}.tools select{flex:1}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="top">
+    <div class="brandrow"><div class="logo">FP</div><div><div class="brand">FIXED PRICE BD</div><div class="sub">Retail & Wholesale • Home Delivery All Over Bangladesh</div></div></div>
+    <div class="actions"><a class="pill adminbtn" href="./admin.html">🔐 অ্যাডমিন লগইন</a><button class="pill cartbtn" id="openCart" type="button">🛒 কার্ট <span id="cartCount">0</span></button></div>
+  </div>
+  <div class="hero">
+    <span class="eyebrow">✨ আপনার বিশ্বস্ত অনলাইন শপ</span>
+    <h1>পছন্দের পণ্য, সাশ্রয়ী দামে!</h1>
+    <p>খুচরা ও পাইকারি অর্ডার নেওয়া হয়। পছন্দের পণ্য কার্টে যোগ করে সহজেই WhatsApp-এ অর্ডার পাঠান।</p>
+    <div class="trust"><span>🚚 সারা বাংলাদেশে ডেলিভারি</span><span>🏷️ আকর্ষণীয় দাম</span><span>🛍️ খুচরা ও পাইকারি</span></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="sectionhead"><div><h2>🛍️ আমাদের পণ্যসমূহ</h2><p>পণ্য বেছে নিন, কার্টে যোগ করুন</p></div></div>
+  <div class="tools">
+    <div class="searchbox"><span>🔎</span><input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন"></div>
+    <select id="sort" aria-label="দাম অনুযায়ী সাজান"><option value="default">ডিফল্ট সাজানো</option><option value="low">দাম কম থেকে বেশি</option><option value="high">দাম বেশি থেকে কম</option></select>
+  </div>
+  <div class="status" id="status">পণ্য লোড হচ্ছে…</div>
+  <div class="grid" id="products"></div>
+  <p class="note">পণ্যের ছবি, বিবরণ ও মূল্য অ্যাডমিন প্যানেল থেকে পরিচালনা করুন।<br>সাহায্যের জন্য WhatsApp & imo: 01865146318</p>
+</main>
+<footer class="footer"><b>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢</b><br>📞 WhatsApp & imo: 01865146318<br>সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br><a class="wa" href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন</a><br><small>FIXED PRICE BD © 2026</small></footer>
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-label="কার্ট">
+  <div class="dhead"><h2>🛒 আপনার কার্ট</h2><button class="close" id="closeCart" type="button">বন্ধ করুন ✕</button></div>
+  <div id="cartItems"></div><div class="total" id="total">মোট: ৳০</div><button class="checkout" id="checkout" type="button">WhatsApp-এ অর্ডার করুন</button>
+  <p class="note">অর্ডার পাঠানোর আগে WhatsApp-এ আপনার নাম, ঠিকানা ও ফোন নম্বর লিখবেন।</p>
+</aside>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+const firebaseConfig={apiKey:'AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ',authDomain:'fixed-price-bd.firebaseapp.com',projectId:'fixed-price-bd',storageBucket:'fixed-price-bd.firebasestorage.app',messagingSenderId:'1055121018003',appId:'1:1055121018003:web:f1bcebcb16376fa8bb9166',measurementId:'G-BWZF99N2TV'};
+const $=s=>document.querySelector(s);
+const taka=n=>'৳'+Number(n||0).toLocaleString('en-BD');
+let products=[],cart={};
+try{cart=JSON.parse(localStorage.getItem('fpbd_cart')||'{}')||{}}catch(e){cart={}}
+function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ const q=$('#search').value.trim().toLowerCase();
+ let list=products.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+ if($('#sort').value==='low')list.sort((a,b)=>a.price-b.price);
+ if($('#sort').value==='high')list.sort((a,b)=>b.price-a.price);
+ $('#products').innerHTML=list.length?list.map(p=>`<article class="product"><div class="photo">${p.image?`<img src="${safeText(p.image)}" alt="${safeText(p.name)}" loading="lazy" onerror="this.remove()">`:'<span class="placeholder">🛍️</span>'}</div><div class="pbody"><span class="tag">🔥 অফার</span><div class="pname">${safeText(p.name)}</div>${p.desc?`<div class="desc">${safeText(p.desc)}</div>`:''}<div class="price"><span class="now">${taka(p.price)}</span>${Number(p.oldPrice||0)>Number(p.price||0)?`<span class="old">${taka(p.oldPrice)}</span>`:''}</div><button class="add" type="button" data-add="${safeText(p.id)}">কার্টে যোগ করুন 🛒</button></div></article>`).join(''):'<div class="empty">এই নামে কোনো পণ্য পাওয়া যায়নি।<br>অন্য নাম লিখে খুঁজুন অথবা পরে আবার চেষ্টা করুন।</div>';
+ $('#products').querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>add(b.dataset.add)));renderCart();
+}
+function add(id){cart[id]=(cart[id]||0)+1;save();openCart()}
+function save(){try{localStorage.setItem('fpbd_cart',JSON.stringify(cart))}catch(e){}renderCart()}
+function renderCart(){
+ const entries=Object.entries(cart).filter(([id,n])=>n>0&&products.some(p=>p.id===id));
+ $('#cartCount').textContent=entries.reduce((s,[id,n])=>s+n,0);
+ $('#total').textContent='মোট: '+taka(entries.reduce((s,[id,n])=>s+products.find(p=>p.id===id).price*n,0));
+ $('#cartItems').innerHTML=entries.length?entries.map(([id,n])=>{const p=products.find(p=>p.id===id);return `<div class="cartrow"><div><b>${safeText(p.name)}</b><br><span class="sub" style="color:#64748b">${taka(p.price)} × ${n}</span></div><div class="qty"><button type="button" data-change="${safeText(id)}" data-delta="-1">−</button><b>${n}</b><button type="button" data-change="${safeText(id)}" data-delta="1">+</button></div></div>`}).join(''):'<p>কার্ট খালি। পণ্য যোগ করুন।</p>';
+ $('#cartItems').querySelectorAll('[data-change]').forEach(b=>b.addEventListener('click',()=>change(b.dataset.change,Number(b.dataset.delta))));
+ $('#checkout').disabled=!entries.length;
+}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save()}
+function openCart(){$('#drawer').classList.add('open');$('#shade').classList.add('open')}
+function closeCart(){$('#drawer').classList.remove('open');$('#shade').classList.remove('open')}
+$('#openCart').addEventListener('click',openCart);$('#closeCart').addEventListener('click',closeCart);$('#shade').addEventListener('click',closeCart);
+$('#search').addEventListener('input',render);$('#sort').addEventListener('change',render);
+$('#checkout').addEventListener('click',()=>{
+ const entries=Object.entries(cart).filter(([id,n])=>n>0&&products.some(p=>p.id===id));if(!entries.length)return;
+ const lines=entries.map(([id,n])=>{const p=products.find(p=>p.id===id);return `${p.name} — ${n}টি × ${p.price} = ${p.price*n} টাকা`});
+ const total=entries.reduce((s,[id,n])=>s+products.find(p=>p.id===id).price*n,0);
+ const msg='আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই.\n\n'+lines.join('\n')+'\n\nমোট: '+total+' টাকা\nনাম:\nঠিকানা:\nমোবাইল:';
+ window.open('https://wa.me/8801865146318?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+async function loadProducts(){
+ try{
+  const app=initializeApp(firebaseConfig),db=getFirestore(app),snapshot=await getDocs(collection(db,'products'));
+  products=snapshot.docs.map(d=>{const x=d.data();return{id:d.id,name:String(x.name||'নামহীন পণ্য'),price:Math.max(0,Number(x.price||0)),oldPrice:Math.max(0,Number(x.oldPrice||0)),desc:String(x.desc||''),image:String(x.image||'')}});
+  $('#status').textContent=products.length?`✅ ${products.length}টি পণ্য পাওয়া গেছে। পছন্দের পণ্য কার্টে যোগ করুন।`:'এখনও কোনো পণ্য সংরক্ষণ করা নেই। অ্যাডমিন প্যানেল থেকে পণ্য যোগ করুন।';
+  render();
+ }catch(err){console.error(err);$('#status').textContent='পণ্য লোড করা যায়নি। ইন্টারনেট সংযোগ ও Firebase Firestore Rules পরীক্ষা করুন।';products=[];render()}
+}
+loadProducts();
+</script>
+</body>
+</html>

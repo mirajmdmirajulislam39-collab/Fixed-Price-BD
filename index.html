@@ -1,312 +1,34 @@
-
 <!doctype html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fixed Price BD | Online Store</title>
-<meta name="description" content="Fixed Price BD — Retail & Wholesale, home delivery all over Bangladesh">
 <style>
-:root{--ink:#152238;--muted:#667085;--brand:#0f766e;--hot:#e94f37;--bg:#f5f7fb;--card:#fff}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--ink)}
-header{background:linear-gradient(125deg,#073b3a,#0f766e);color:#fff;padding:22px 16px 18px}
-header .top{max-width:1080px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.brand{font-weight:900;font-size:24px}
-.sub{font-size:13px;opacity:.9}
-.cartbtn{background:#fff;color:#075e58;border:0;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer}
-.adminbtn{background:#fef3c7;color:#78350f;border:0;border-radius:999px;padding:10px 14px;font-weight:800;text-decoration:none;white-space:nowrap}
-.hero{max-width:1080px;margin:18px auto 0;padding:0 16px}
-.hero h1{font-size:clamp(24px,5vw,38px);line-height:1.2;margin:0 0 8px}
-.hero p{margin:0;color:#e0f2f1}
-.wrap{max-width:1080px;margin:20px auto;padding:0 14px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.tools input,.tools select{border:1px solid #d6dce5;border-radius:12px;padding:12px;background:white;font:inherit;min-width:0}
-.tools input{flex:1}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product{background:var(--card);border:1px solid #e7eaf0;border-radius:16px;overflow:hidden;box-shadow:0 3px 14px #18223008;display:flex;flex-direction:column}
-.photo{height:155px;background:#e8f2f1;display:flex;align-items:center;justify-content:center;color:#5d7774;font-size:14px;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.pbody{padding:12px;display:flex;flex-direction:column;gap:7px;flex:1}
-.pname{font-weight:800;line-height:1.35}
-.price{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.now{font-weight:900;color:var(--hot);font-size:19px}
-.old{color:#8a93a3;text-decoration:line-through;font-size:13px}
-.tag{font-size:11px;background:#fff0ed;color:#b83222;border-radius:99px;padding:4px 8px;width:max-content}
-.add{margin-top:auto;border:0;background:var(--brand);color:white;font-weight:800;border-radius:10px;padding:11px;cursor:pointer}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:36px 10px}
-.note{text-align:center;color:var(--muted);font-size:13px;margin:20px 0}
-.footer{background:#102a2a;color:white;text-align:center;padding:22px 14px;margin-top:28px;font-size:14px;line-height:1.8}
-.wa{color:#fff;background:#168b51;text-decoration:none;padding:10px 14px;border-radius:999px;display:inline-block;font-weight:800;margin-top:8px}
-.shade{position:fixed;inset:0;background:#07142577;display:none;z-index:9}
-.drawer{position:fixed;z-index:10;right:0;top:0;height:100dvh;width:min(420px,100%);background:#fff;transform:translateX(105%);transition:.22s;padding:18px;overflow:auto;box-shadow:-8px 0 30px #0002}
-.drawer.open{transform:translateX(0)}
-.shade.open{display:block}
-.dhead{display:flex;justify-content:space-between;align-items:center}
-.close{border:0;background:#edf1f5;border-radius:10px;padding:8px 12px}
-.cartrow{display:grid;grid-template-columns:1fr auto;gap:8px;border-bottom:1px solid #e5e7eb;padding:12px 0}
-.qty{display:flex;align-items:center;gap:9px}
-.qty button{border:1px solid #d6dce5;background:#fff;border-radius:8px;padding:4px 9px}
-.total{font-size:20px;font-weight:900;margin:18px 0}
-.checkout{width:100%;border:0;background:#168b51;color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:900}
-.checkout:disabled{opacity:.4}
-@media(min-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:210px}}
-@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+body{margin:0;font-family:system-ui,"Noto Sans Bengali",sans-serif;background:#f5f7fb;color:#152238}
+header{background:#075e58;color:white;padding:20px}main{max-width:1000px;margin:20px auto;padding:0 12px}
+a,button{cursor:pointer}a{color:inherit}.tools{display:flex;gap:8px;margin-bottom:14px}.tools input{flex:1}
+input,select,button{font:inherit;padding:10px;border-radius:9px;border:1px solid #d3dae3}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px}
+.product{background:white;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden}
+.photo{height:180px;background:#e8f2f1;display:flex;align-items:center;justify-content:center;color:#526b69}
+.photo img{width:100%;height:100%;object-fit:contain}.body{padding:12px}.price{color:#d94831;font-weight:bold;font-size:20px}
+.old{text-decoration:line-through;color:#777;font-size:13px}.add{width:100%;background:#0f766e;color:white;border:0;margin-top:10px}
+footer{text-align:center;background:#102a2a;color:white;padding:22px;line-height:1.8;margin-top:25px}
 </style>
-</head>
-<body>
-<header>
-  <div class="top">
-    <div>
-      <div class="brand">FIXED PRICE BD</div>
-      <div class="sub">Retail & Wholesale • Home Delivery All Over Bangladesh</div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <a class="adminbtn" href="./admin.html">🔐 অ্যাডমিন লগইন</a>
-      <button class="cartbtn" id="openCart">🛒 কার্ট <span id="cartCount">0</span></button>
-    </div>
-  </div>
-  <div class="hero">
-    <h1>পছন্দের পণ্য, সাশ্রয়ী দামে</h1>
-    <p>খুচরা ও পাইকারি অর্ডার নেওয়া হয় • অর্ডার করতে পণ্য কার্টে যোগ করুন</p>
-  </div>
-</header>
-
-<main class="wrap">
-  <div class="tools">
-    <input id="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন">
-    <select id="sort" aria-label="দাম অনুযায়ী সাজান">
-      <option value="default">সাজান: ডিফল্ট</option>
-      <option value="low">দাম কম থেকে বেশি</option>
-      <option value="high">দাম বেশি থেকে কম</option>
-    </select>
-  </div>
-  <div class="grid" id="products">
-    <div class="empty">পণ্য লোড হচ্ছে...</div>
-  </div>
-  <p class="note">পণ্যের নাম, দাম ও ছবি আপডেট করতে Admin Panel ব্যবহার করুন।</p>
-</main>
-
-<footer class="footer">
-  <b>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢</b><br>
-  📞 WhatsApp & imo: 01865146318<br>
-  সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br>
-  <a class="wa" href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন</a><br>
-  <small>FIXED PRICE BD © 2026</small>
-</footer>
-
-<div class="shade" id="shade"></div>
-<aside class="drawer" id="drawer">
-  <div class="dhead">
-    <h2>আপনার কার্ট</h2>
-    <button class="close" id="closeCart">বন্ধ করুন ✕</button>
-  </div>
-  <div id="cartItems"></div>
-  <div class="total" id="total">মোট: ৳০</div>
-  <button class="checkout" id="checkout">WhatsApp-এ অর্ডার করুন</button>
-  <p class="note">অর্ডার পাঠানোর আগে WhatsApp-এ আপনার ঠিকানা ও ফোন নম্বর লিখবেন।</p>
-</aside>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+</head><body>
+<header><h1>FIXED PRICE BD</h1><p>খুচরা ও পাইকারি • সারা বাংলাদেশে হোম ডেলিভারি</p><a href="./admin.html">🔐 অ্যাডমিন প্যানেল</a></header>
+<main><div class="tools"><input id="search" placeholder="পণ্যের নাম খুঁজুন"><select id="sort"><option value="">ডিফল্ট</option><option value="low">দাম কম থেকে বেশি</option><option value="high">দাম বেশি থেকে কম</option></select></div>
+<div id="products" class="grid">পণ্য লোড হচ্ছে…</div></main>
+<footer>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢<br>WhatsApp & imo: 01865146318<br>সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br><a href="https://wa.me/8801865146318">WhatsApp-এ যোগাযোগ করুন</a></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",
-  authDomain: "fixed-price-bd.firebaseapp.com",
-  projectId: "fixed-price-bd",
-  storageBucket: "fixed-price-bd.firebasestorage.app",
-  messagingSenderId: "1055121018003",
-  appId: "1:1055121018003:web:f1bcebcb16376fa8bb9166",
-  measurementId: "G-BWZF99N2TV"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-let products = [];
-let cart = {};
-
-try {
-  cart = JSON.parse(localStorage.getItem('fpbd_cart') || '{}') || {};
-} catch (e) {
-  cart = {};
-}
-
-const $ = s => document.querySelector(s);
-const taka = n => '৳' + Number(n || 0).toLocaleString('en-BD');
-
-function safeText(value) {
-  return String(value ?? '').replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
-}
-
-async function loadProducts() {
-  $('#products').innerHTML = '<div class="empty">পণ্য লোড হচ্ছে...</div>';
-
-  try {
-    const snapshot = await db.collection('products').get();
-
-    products = snapshot.docs.map(doc => {
-      const p = doc.data();
-      return {
-        id: doc.id,
-        name: String(p.name || 'নাম দেওয়া হয়নি'),
-        price: Number(p.price) || 0,
-        old: Number(p.oldPrice) || 0,
-        desc: String(p.desc || ''),
-        image: String(p.image || '')
-      };
-    });
-
-    render();
-  } catch (error) {
-    console.error('Firebase product loading error:', error);
-    $('#products').innerHTML =
-      '<div class="empty">পণ্য লোড হচ্ছে না। Firebase Firestore Rules ও সংযোগ পরীক্ষা করুন।</div>';
-  }
-}
-
-function render() {
-  const q = $('#search').value.trim().toLowerCase();
-
-  let list = products.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.desc.toLowerCase().includes(q)
-  );
-
-  if ($('#sort').value === 'low') list.sort((a,b) => a.price - b.price);
-  if ($('#sort').value === 'high') list.sort((a,b) => b.price - a.price);
-
-  $('#products').innerHTML = list.length ? list.map(p => {
-    const imageUrl = /^https?:\/\//i.test(p.image) ? p.image : '';
-
-    return `
-      <article class="product">
-        <div class="photo">
-          ${imageUrl
-            ? `<img src="${safeText(imageUrl)}" alt="${safeText(p.name)}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='ছবি লোড হয়নি'">`
-            : 'পণ্যের ছবি নেই'}
-        </div>
-        <div class="pbody">
-          <span class="tag">অফার</span>
-          <div class="pname">${safeText(p.name)}</div>
-          <div class="sub" style="color:#667085">${safeText(p.desc)}</div>
-          <div class="price">
-            <span class="now">${taka(p.price)}</span>
-            ${p.old > 0 ? `<span class="old">${taka(p.old)}</span>` : ''}
-          </div>
-          <button class="add" data-add="${safeText(p.id)}">কার্টে যোগ করুন</button>
-        </div>
-      </article>`;
-  }).join('') : '<div class="empty">এখনো কোনো পণ্য যোগ করা হয়নি।</div>';
-
-  renderCart();
-}
-
-function add(id) {
-  cart[id] = (Number(cart[id]) || 0) + 1;
-  save();
-  openCart();
-}
-
-function save() {
-  try {
-    localStorage.setItem('fpbd_cart', JSON.stringify(cart));
-  } catch (e) {}
-  renderCart();
-}
-
-function renderCart() {
-  const entries = Object.entries(cart).filter(([id,n]) =>
-    Number(n) > 0 && products.some(p => p.id === id)
-  );
-
-  const count = entries.reduce((s,[id,n]) => s + Number(n), 0);
-  const sum = entries.reduce((s,[id,n]) =>
-    s + products.find(p => p.id === id).price * Number(n), 0
-  );
-
-  $('#cartCount').textContent = count;
-  $('#total').textContent = 'মোট: ' + taka(sum);
-
-  $('#cartItems').innerHTML = entries.length ? entries.map(([id,n]) => {
-    const p = products.find(p => p.id === id);
-    return `
-      <div class="cartrow">
-        <div>
-          <b>${safeText(p.name)}</b><br>
-          <span class="sub">${taka(p.price)} × ${Number(n)}</span>
-        </div>
-        <div class="qty">
-          <button data-change="${safeText(id)}" data-delta="-1">−</button>
-          <b>${Number(n)}</b>
-          <button data-change="${safeText(id)}" data-delta="1">+</button>
-        </div>
-      </div>`;
-  }).join('') : '<p>কার্ট খালি। পণ্য যোগ করুন।</p>';
-
-  $('#checkout').disabled = !entries.length;
-}
-
-function change(id, delta) {
-  cart[id] = (Number(cart[id]) || 0) + delta;
-  if (cart[id] <= 0) delete cart[id];
-  save();
-}
-
-function openCart() {
-  $('#drawer').classList.add('open');
-  $('#shade').classList.add('open');
-}
-
-function closeCart() {
-  $('#drawer').classList.remove('open');
-  $('#shade').classList.remove('open');
-}
-
-$('#products').addEventListener('click', event => {
-  const addButton = event.target.closest('[data-add]');
-  if (addButton) add(addButton.dataset.add);
-
-  const changeButton = event.target.closest('[data-change]');
-  if (changeButton) {
-    change(changeButton.dataset.change, Number(changeButton.dataset.delta));
-  }
-});
-
-$('#openCart').onclick = openCart;
-$('#closeCart').onclick = closeCart;
-$('#shade').onclick = closeCart;
-$('#search').oninput = render;
-$('#sort').onchange = render;
-
-$('#checkout').onclick = () => {
-  const entries = Object.entries(cart).filter(([id,n]) =>
-    Number(n) > 0 && products.some(p => p.id === id)
-  );
-
-  if (!entries.length) return;
-
-  const lines = entries.map(([id,n]) => {
-    const p = products.find(p => p.id === id);
-    return `${p.name} — ${n}টি × ${p.price} = ${p.price * Number(n)} টাকা`;
-  });
-
-  const total = entries.reduce((s,[id,n]) =>
-    s + products.find(p => p.id === id).price * Number(n), 0
-  );
-
-  const msg = 'আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই.\n\n'
-    + lines.join('\n') + '\n\nমোট: ' + total
-    + ' টাকা\nনাম:\nঠিকানা:\nমোবাইল:';
-
-  window.open(
-    'https://wa.me/8801865146318?text=' + encodeURIComponent(msg),
-    '_blank'
-  );
-};
-
-loadProducts();
-</script>
-</body>
-</html>
+const firebaseConfig={apiKey:"AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",authDomain:"fixed-price-bd.firebaseapp.com",projectId:"fixed-price-bd",storageBucket:"fixed-price-bd.firebasestorage.app",messagingSenderId:"1055121018003",appId:"1:1055121018003:web:f1bcebcb16376fa8bb9166",measurementId:"G-BWZF99N2TV"};
+firebase.initializeApp(firebaseConfig);const db=firebase.firestore();let products=[];
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>"৳"+Number(n||0).toLocaleString("en-BD");
+function render(){let q=document.getElementById("search").value.trim().toLowerCase();let list=products.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));let sort=document.getElementById("sort").value;if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);
+document.getElementById("products").innerHTML=list.length?list.map(p=>{const imageUrl=/^(https?:\/\/|data:image\/)/i.test(p.image)?p.image:"";return `<article class="product"><div class="photo">${imageUrl?`<img src="${safe(imageUrl)}" alt="${safe(p.name)}" onerror="this.style.display='none';this.parentElement.textContent='ছবি লোড হয়নি'">`:"পণ্যের ছবি নেই"}</div><div class="body"><b>${safe(p.name)}</b><p>${safe(p.desc)}</p><div class="price">${money(p.price)}</div>${p.old>0?`<div class="old">${money(p.old)}</div>`:""}<button class="add" onclick="order('${safe(p.id)}')">WhatsApp-এ অর্ডার</button></div></article>`}).join(""):"এখনো কোনো পণ্য যোগ করা হয়নি।"}
+function order(id){let p=products.find(x=>x.id===id);if(!p)return;let msg=`আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই।\nপণ্য: ${p.name}\nদাম: ${p.price} টাকা\nনাম:\nঠিকানা:\nমোবাইল:`;window.open("https://wa.me/8801865146318?text="+encodeURIComponent(msg),"_blank")}
+document.getElementById("search").oninput=render;document.getElementById("sort").onchange=render;
+db.collection("products").get().then(s=>{products=s.docs.map(d=>{let p=d.data();return{id:d.id,name:String(p.name||""),price:Number(p.price)||0,old:Number(p.oldPrice)||0,desc:String(p.desc||""),image:String(p.image||"")}});render()}).catch(e=>{console.error(e);document.getElementById("products").textContent="পণ্য লোড হচ্ছে না। Firestore Rules পরীক্ষা করুন।"});
+</script></body></html>

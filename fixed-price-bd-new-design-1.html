@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#075e54">
+<title>Fixed Price BD | অনলাইন শপ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#075e54;--g2:#0b796b;--ink:#17312d;--muted:#71817d;--bg:#f5faf7;--line:#e3eee8;--orange:#ff9b55}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Bengali",system-ui,sans-serif}a{text-decoration:none;color:inherit}
+.top{background:#043e38;color:#d8f4e9;text-align:center;padding:8px;font-size:12px}
+header{background:linear-gradient(125deg,#064c45,#0b796b);color:white;padding:18px 15px 24px}
+.wrap{max-width:1120px;margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{background:#fff;color:var(--g);border-radius:14px;width:46px;height:46px;display:grid;place-items:center;font-weight:900;font-size:19px}.brand h1{font-size:clamp(18px,4vw,25px);margin:0;font-weight:800}.brand p{font-size:11px;color:#d1eee5;margin:3px 0 0}.admin{border:1px solid #ffffff55;background:#ffffff16;border-radius:11px;padding:9px 11px;font-size:12px;font-weight:700;white-space:nowrap}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:center;margin-top:26px}.pill{display:inline-block;border:1px solid #ffffff40;background:#ffffff15;border-radius:99px;padding:6px 11px;font-size:12px}.hero h2{font-size:clamp(27px,5vw,43px);line-height:1.35;margin:13px 0 8px;font-weight:800}.hero h2 em{font-style:normal;color:#ffd0a0}.hero p{font-size:14px;line-height:1.8;color:#d3eee6;margin:0}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 15px;font-size:12px;font-weight:700}.light{background:white;color:var(--g)}.glass{border:1px solid #ffffff55;background:#ffffff13;color:white}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:15px 12px;background:#ffffff13;border:1px solid #ffffff20;border-radius:15px}.stat b{display:block;font-size:14px}.stat span{display:block;color:#d0eee5;font-size:10px;line-height:1.6;margin-top:5px}
+main{max-width:1120px;margin:auto;padding:22px 14px 32px}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:25px}.benefit{background:white;border:1px solid var(--line);border-radius:15px;padding:13px;display:flex;align-items:center;gap:10px}.ico{height:38px;width:38px;flex-shrink:0;background:#e5f6ef;border-radius:12px;display:grid;place-items:center;font-size:18px}.benefit b{font-size:12px;display:block}.benefit small{font-size:10px;color:var(--muted);display:block;margin-top:4px;line-height:1.5}.heading{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:0 0 14px}.heading h2{font-size:22px;margin:0}.heading p{font-size:12px;color:var(--muted);margin:5px 0 0}.count{font-size:11px;color:var(--g);background:#e2f5ed;padding:7px 10px;border-radius:99px;white-space:nowrap}.tools{display:flex;gap:10px;margin-bottom:16px}.search{flex:1;position:relative}.search span{position:absolute;left:13px;top:10px;color:#82928c;font-size:19px}input,select{font:inherit;background:#fff;border:1px solid #dce8e2;border-radius:12px;height:45px;outline:none}#search{width:100%;padding:0 12px 0 40px}#sort{padding:0 11px;max-width:195px;font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.product{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0;box-shadow:0 5px 20px #164b3d08;transition:.2s}.product:hover{transform:translateY(-3px);box-shadow:0 12px 30px #164b3d16}.photo{height:205px;background:linear-gradient(145deg,#eef8f3,#e3f0e9);display:flex;align-items:center;justify-content:center;text-align:center;color:#78938a;overflow:hidden}.photo img{width:100%;height:100%;object-fit:contain;padding:8px}.noimg{font-size:12px}.noimg b{display:block;font-size:32px;margin-bottom:5px}.body{padding:13px}.pname{font-size:13px;line-height:1.55;font-weight:700;overflow-wrap:anywhere;min-height:40px}.desc{font-size:10px;color:var(--muted);line-height:1.65;margin:6px 0;overflow-wrap:anywhere}.prices{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:10px}.price{font-size:20px;font-weight:800;color:#db562e}.old{font-size:12px;color:#95a19d;text-decoration:line-through}.order{width:100%;border:0;background:var(--g);color:white;padding:11px 6px;border-radius:11px;margin-top:12px;font:inherit;font-size:11px;font-weight:700;cursor:pointer}.order:hover{background:var(--g2)}.empty{grid-column:1/-1;background:white;border:1px dashed #cbdcd4;border-radius:16px;text-align:center;padding:32px 14px;color:var(--muted);font-size:13px}
+footer{background:#082f2c;color:#e5f4ef;text-align:center;padding:27px 15px;line-height:1.9;margin-top:14px}.footbrand{font-size:19px;font-weight:800;color:#fff}footer p{font-size:12px;color:#c4ddd5;margin:6px}.wa{display:inline-block;background:#1ebc68;color:white;padding:10px 16px;border-radius:11px;font-size:12px;font-weight:700;margin:8px}.copy{border-top:1px solid #ffffff22;padding-top:13px;margin-top:15px;color:#a9c9bd;font-size:10px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:620px){header{padding:14px 12px 20px}.logo{width:41px;height:41px}.admin{font-size:10px;padding:8px}.hero{grid-template-columns:1fr;margin-top:19px;gap:16px}.hero h2{font-size:30px}.stat{padding:12px}.benefits{gap:7px}.benefit{display:block;padding:10px 8px}.ico{width:31px;height:31px;margin-bottom:7px}.benefit b{font-size:10px}.benefit small{font-size:9px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:155px}.body{padding:10px}.pname{font-size:12px}.price{font-size:18px}.order{font-size:10px}.heading h2{font-size:19px}}
+@media(max-width:360px){.tools{flex-direction:column}#sort{max-width:none;width:100%}.photo{height:135px}.brand p{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="top">🚚 সারা বাংলাদেশে হোম ডেলিভারি • খুচরা ও পাইকারি বিক্রি</div>
+<header><div class="wrap">
+  <div class="nav"><a class="brand" href="./"><div class="logo">FP</div><div><h1>FIXED PRICE BD</h1><p>আপনার বিশ্বস্ত অনলাইন শপ</p></div></a><a class="admin" href="./admin.html">🔐 অ্যাডমিন প্যানেল</a></div>
+  <section class="hero"><div><span class="pill">✨ স্মার্ট শপিং, সেরা দামে</span><h2>পছন্দের পণ্য কিনুন<br><em>সাশ্রয়ী দামে!</em></h2><p>ফ্যাশন, দৈনন্দিন প্রয়োজনীয় পণ্য এবং আরও অনেক কিছু—খুচরা ও পাইকারি অর্ডার করুন সহজেই।</p><div class="actions"><a class="btn light" href="#shop">🛍️ পণ্য দেখুন</a><a class="btn glass" href="https://wa.me/8801865146318">WhatsApp-এ কথা বলুন ↗</a></div></div>
+  <div class="stats"><div class="stat"><b>💸 সাশ্রয়ী দাম</b><span>বাজেটের মধ্যে পছন্দের পণ্য</span></div><div class="stat"><b>📦 হোম ডেলিভারি</b><span>সারা বাংলাদেশে</span></div><div class="stat"><b>🤝 খুচরা ও পাইকারি</b><span>আপনার প্রয়োজন অনুযায়ী</span></div><div class="stat"><b>💬 সহজ অর্ডার</b><span>WhatsApp-এর মাধ্যমে</span></div></div></section>
+</div></header>
+<main id="shop">
+  <div class="benefits"><div class="benefit"><div class="ico">🚚</div><div><b>সারা দেশে ডেলিভারি</b><small>আপনার ঠিকানায় পণ্য পৌঁছে দিন</small></div></div><div class="benefit"><div class="ico">🏷️</div><div><b>খুচরা ও পাইকারি</b><small>প্রয়োজন অনুযায়ী অর্ডার করুন</small></div></div><div class="benefit"><div class="ico">📱</div><div><b>সহজে অর্ডার</b><small>WhatsApp-এ অর্ডারের তথ্য দিন</small></div></div></div>
+  <div class="heading"><div><h2>🛍️ আমাদের পণ্য</h2><p>আপনার পছন্দের পণ্য খুঁজে নিন</p></div><span id="count" class="count">পণ্য লোড হচ্ছে…</span></div>
+  <div class="tools"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="পণ্যের নাম লিখে খুঁজুন…" aria-label="পণ্য খুঁজুন"></label><select id="sort" aria-label="দাম অনুযায়ী সাজান"><option value="">ডিফল্ট সাজানো</option><option value="low">দাম: কম থেকে বেশি</option><option value="high">দাম: বেশি থেকে কম</option></select></div>
+  <div id="products" class="grid"><div class="empty">⏳ পণ্য লোড হচ্ছে…</div></div>
+</main>
+<footer><div class="footbrand">FIXED PRICE BD</div><p>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢</p><p>📞 WhatsApp &amp; imo: 01865146318</p><p>🚚 সারা বাংলাদেশে হোম ডেলিভারি সুবিধা</p><a class="wa" href="https://wa.me/8801865146318">☘ WhatsApp-এ অর্ডার করুন</a><div class="copy">© <span id="year"></span> Fixed Price BD • All rights reserved.</div></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",
+  authDomain: "fixed-price-bd.firebaseapp.com",
+  projectId: "fixed-price-bd",
+  storageBucket: "fixed-price-bd.firebasestorage.app",
+  messagingSenderId: "1055121018003",
+  appId: "1:1055121018003:web:f1bcebcb16376fa8bb9166",
+  measurementId: "G-BWZF99N2TV"
+};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();let products=[];
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>"৳"+Number(n||0).toLocaleString("en-BD");
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ let list=products.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+ const sort=document.getElementById("sort").value;if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ document.getElementById("count").textContent=list.length+"টি পণ্য";
+ document.getElementById("products").innerHTML=list.length?list.map(p=>{
+ const img=/^(https?:\\/\\/|data:image\\/)/i.test(p.image)?p.image:"";
+ return `<article class="product"><div class="photo">${img?`<img loading="lazy" src="${safe(img)}" alt="${safe(p.name)}" onerror="this.remove();this.parentElement.innerHTML='<div class=&quot;noimg&quot;><b>▧</b>ছবি পাওয়া যায়নি</div>'">`:'<div class="noimg"><b>▧</b>পণ্যের ছবি নেই</div>'}</div><div class="body"><div class="pname">${safe(p.name)}</div>${p.desc?`<p class="desc">${safe(p.desc)}</p>`:""}<div class="prices"><span class="price">${money(p.price)}</span>${p.old>0?`<span class="old">${money(p.old)}</span>`:""}</div><button class="order" onclick="order('${safe(p.id)}')">💬 WhatsApp-এ অর্ডার</button></div></article>`;
+ }).join(""):'<div class="empty">😕 কোনো পণ্য পাওয়া যায়নি। অন্য নামে খুঁজুন।</div>';
+}
+function order(id){const p=products.find(x=>x.id===id);if(!p)return;const msg=`আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই।\\nপণ্য: ${p.name}\\nদাম: ${p.price} টাকা\\nনাম:\\nঠিকানা:\\nমোবাইল:`;window.open("https://wa.me/8801865146318?text="+encodeURIComponent(msg),"_blank")}
+document.getElementById("search").addEventListener("input",render);document.getElementById("sort").addEventListener("change",render);document.getElementById("year").textContent=new Date().getFullYear();
+db.collection("products").get().then(snapshot=>{products=snapshot.docs.map(doc=>{const p=doc.data();return{id:doc.id,name:String(p.name||""),price:Number(p.price)||0,old:Number(p.oldPrice??p.old??0)||0,desc:String(p.desc||p.description||""),image:String(p.image||p.imageUrl||p.imageURL||p.photoURL||p.photo||p.image_url||"")}});render()}).catch(error=>{console.error(error);document.getElementById("count").textContent="লোড হয়নি";document.getElementById("products").innerHTML='<div class="empty">পণ্য লোড হচ্ছে না। ইন্টারনেট ও Firestore Rules পরীক্ষা করুন।</div>'});
+</script>
+</body></html>

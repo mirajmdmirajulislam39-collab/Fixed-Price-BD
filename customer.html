@@ -7,34 +7,35 @@
 <title>Fixed Price BD | Online Store</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f5f8f6;color:#17352f;font-family:Arial,"Noto Sans Bengali",sans-serif}
+body{margin:0;background:#f3f7f5;color:#17352f;font-family:Arial,"Noto Sans Bengali",sans-serif}
 header{background:#006b50;color:white;padding:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:24px;font-weight:bold}
+.logo{font-size:23px;font-weight:bold}
 .wrap{max-width:1100px;margin:auto;padding:15px}
 .hero{background:linear-gradient(120deg,#d9f9e7,#fff0cc);padding:22px;border-radius:14px;margin-bottom:20px}
 .hero h1{color:#006b50}
 input,textarea,button{font:inherit}
 .search,.field{width:100%;padding:12px;border:1px solid #ccd9d3;border-radius:9px;margin:5px 0}
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.product,.cart,.checkout{background:white;border:1px solid #e0e8e3;border-radius:12px;padding:12px}
-.pic{height:150px;background:#f0f5f1;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:48px;overflow:hidden}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
+.product{display:block!important;min-width:0;background:#fff!important;border:2px solid #d7e6dc!important;border-radius:14px!important;padding:12px!important;box-shadow:0 4px 12px rgba(0,0,0,.12)!important;overflow:hidden}
+.pic{height:160px;background:#f0f5f1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:48px;overflow:hidden}
 .pic img{width:100%;height:100%;object-fit:contain}
-.product h3{font-size:16px}
+.product h3{font-size:16px;color:#006b50;overflow-wrap:anywhere}
+.product p{overflow-wrap:anywhere}
 .old{text-decoration:line-through;color:#777}
-.price{color:#df263b;font-size:21px;font-weight:bold}
+.price{color:#df263b;font-size:22px;font-weight:bold}
 .btn{width:100%;padding:11px;border:0;border-radius:8px;background:#00845f;color:white;font-weight:bold;margin-top:8px;cursor:pointer}
-.remove{background:#df263b;width:auto;padding:5px 10px}
+.remove{background:#df263b;width:auto;padding:5px 12px}
+.cart,.checkout{background:white;border:1px solid #d7e6dc;border-radius:14px;padding:14px;margin-top:22px}
 .cartrow{padding:10px 0;border-bottom:1px solid #eee}
 .total{font-size:21px;font-weight:bold;color:#df263b}
 .checkout h2,.cart h2{color:#006b50}
 .note{font-size:13px;color:#596b63}
 footer{background:#005548;color:white;text-align:center;padding:22px;margin-top:25px;line-height:1.9}
-@media(max-width:800px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:380px){.products{grid-template-columns:1fr}}
+@media(min-width:800px){.products{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:360px){.products{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">🛍️ Fixed Price BD</div>
   <div>Retail &amp; Wholesale</div>
@@ -49,11 +50,10 @@ footer{background:#005548;color:white;text-align:center;padding:22px;margin-top:
   </section>
 
   <h2>🔥 আমাদের পণ্যসমূহ</h2>
-  <input id="search" class="search"
-    placeholder="🔎 পণ্যের নাম লিখে খুঁজুন...">
+  <input id="search" class="search" placeholder="🔎 পণ্যের নাম লিখে খুঁজুন...">
   <div id="products" class="products">পণ্য লোড হচ্ছে...</div>
 
-  <section class="cart" id="cart" style="margin-top:22px">
+  <section class="cart" id="cart">
     <h2>🛒 আপনার কার্ট (<span id="count">0</span>)</h2>
     <div id="cartitems">কার্ট খালি</div>
     <p>পণ্যের মোট দাম: <strong id="subtotal">৳0</strong></p>
@@ -66,19 +66,11 @@ footer{background:#005548;color:white;text-align:center;padding:22px;margin-top:
     <p class="note">সব ঘর পূরণ করে WhatsApp-এ অর্ডার পাঠান।</p>
     <form id="orderForm">
       <label for="customerName">আপনার সম্পূর্ণ নাম *</label>
-      <input class="field" id="customerName" required maxlength="100"
-        placeholder="আপনার নাম লিখুন">
-
+      <input class="field" id="customerName" required maxlength="100" placeholder="আপনার নাম লিখুন">
       <label for="customerPhone">মোবাইল নম্বর *</label>
-      <input class="field" id="customerPhone" required
-        type="tel" inputmode="tel" maxlength="20"
-        placeholder="01XXXXXXXXX">
-
+      <input class="field" id="customerPhone" required type="tel" maxlength="20" placeholder="01XXXXXXXXX">
       <label for="customerAddress">সম্পূর্ণ ঠিকানা *</label>
-      <textarea class="field" id="customerAddress" required
-        rows="4" maxlength="500"
-        placeholder="বাড়ি/গ্রাম, ইউনিয়ন, উপজেলা, জেলা লিখুন"></textarea>
-
+      <textarea class="field" id="customerAddress" required rows="4" maxlength="500" placeholder="বাড়ি/গ্রাম, ইউনিয়ন, উপজেলা, জেলা লিখুন"></textarea>
       <button class="btn" type="submit">📲 WhatsApp-এ অর্ডার করুন</button>
     </form>
   </section>
@@ -95,7 +87,6 @@ footer{background:#005548;color:white;text-align:center;padding:22px;margin-top:
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 <script>
 "use strict";
 
@@ -109,186 +100,134 @@ const firebaseConfig = {
   measurementId: "G-BWZF99N2TV"
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 let P = [];
 const C = {};
 
-function money(n) {
-  return "৳" + Math.round(Number(n) || 0).toLocaleString("en-US");
+function money(n){
+  return "৳"+Math.round(Number(n)||0).toLocaleString("en-US");
 }
-
-function discount(p) {
-  const old = Number(p.o) || 0;
-  const price = Number(p.p) || 0;
-  return old > 0 ? Math.max(0, Math.round((old-price)/old*100)) : 0;
+function discount(p){
+  const old=Number(p.o)||0, price=Number(p.p)||0;
+  return old>0?Math.max(0,Math.round((old-price)/old*100)):0;
 }
-
-function safeText(value) {
-  return String(value ?? "").replace(/[&<>"']/g, ch => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
+function safeText(value){
+  return String(value??"").replace(/[&<>"']/g,ch=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   })[ch]);
 }
 
-function draw() {
-  const q = document.getElementById("search").value.toLowerCase().trim();
-
-  const filtered = P.filter(p =>
-    (String(p.n || "") + " " + String(p.d || "")).toLowerCase().includes(q)
+function draw(){
+  const q=document.getElementById("search").value.toLowerCase().trim();
+  const filtered=P.filter(p=>
+    (p.n+" "+p.d).toLowerCase().includes(q)
   );
 
-  document.getElementById("products").innerHTML = filtered.map(p => {
-    const img = String(p.img || "").trim();
-    const validImage = /^(https?:\/\/\S+|data:image\/)/i.test(img);
-
-    const imageHtml = validImage
-      ? '<img src="' + safeText(img) + '" alt="' +
-        safeText(p.n) + '" onerror="this.style.display=\'none\'">'
-      : safeText(p.e || "📦");
+  document.getElementById("products").innerHTML=filtered.map(p=>{
+    const img=String(p.img||"").trim();
+    const validImage=/^https?:\/\/\S+$/i.test(img);
+    const imageHtml=validImage
+      ? '<img src="'+safeText(img)+'" alt="'+safeText(p.n)+'" onerror="this.style.display=\'none\'">'
+      : '📦';
 
     return `
-      <article class="product">
+      <article class="product" style="display:block;background:#fff;border:2px solid #d7e6dc;border-radius:14px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.12)">
         <div class="pic">${imageHtml}</div>
         <p>🔥 ${discount(p)}% ছাড়</p>
         <h3>${safeText(p.n)}</h3>
-        <p>${safeText(p.d || "")}</p>
+        <p>${safeText(p.d)}</p>
         <p class="old">${money(p.o)}</p>
         <div class="price">${money(p.p)}</div>
         <p>সাশ্রয় ${money(Math.max(0,(Number(p.o)||0)-(Number(p.p)||0)))}</p>
-        <p class="note">⭐ ${safeText(p.r || "5.0")} | স্টক: ${safeText(p.s || 0)}</p>
-        <button class="btn" onclick="add(${JSON.stringify(p.id)})">
-          🛒 কার্টে নিন
-        </button>
+        <p class="note">⭐ ${safeText(p.r)} | স্টক: ${p.s}</p>
+        <button class="btn" onclick="add('${safeText(p.id)}')">🛒 কার্টে নিন</button>
       </article>`;
-  }).join("") || "<p>এখনো কোনো পণ্য যোগ করা হয়নি।</p>";
+  }).join("")||"<p>এখনো কোনো পণ্য যোগ করা হয়নি।</p>";
 
   cartdraw();
 }
 
-function add(id) {
-  const p = P.find(x => String(x.id) === String(id));
-  if (!p) return;
-  C[id] = (C[id] || 0) + 1;
+function add(id){
+  if(!P.some(p=>String(p.id)===String(id)))return;
+  C[id]=(C[id]||0)+1;
   cartdraw();
-  document.getElementById("cart").scrollIntoView({
-    behavior:"smooth", block:"nearest"
-  });
+  document.getElementById("cart").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-
-function change(id, amount) {
-  C[id] = (C[id] || 0) + amount;
-  if (C[id] <= 0) delete C[id];
+function change(id,amount){
+  C[id]=(C[id]||0)+amount;
+  if(C[id]<=0)delete C[id];
   cartdraw();
 }
-
-function cartdraw() {
-  const ids = Object.keys(C);
-  let subtotal = 0, total = 0, count = 0;
-
-  document.getElementById("cartitems").innerHTML = ids.length
-    ? ids.map(id => {
-        const p = P.find(x => String(x.id) === String(id));
-        if (!p) return "";
-
-        const qty = C[id];
-        const price = Number(p.p) || 0;
-        const old = Number(p.o) || 0;
-
-        subtotal += old * qty;
-        total += price * qty;
-        count += qty;
-
-        return `<div class="cartrow">
-          <strong>${safeText(p.n)}</strong><br>
-          ${money(price)} × ${qty}<br>
-          <button class="btn remove" onclick="change(${JSON.stringify(id)},-1)">−</button>
-          <button class="btn remove" onclick="change(${JSON.stringify(id)},1)">+</button>
-          <strong>${money(price*qty)}</strong>
-        </div>`;
-      }).join("")
-    : "কার্ট খালি";
-
-  document.getElementById("count").textContent = count;
-  document.getElementById("subtotal").textContent = money(subtotal);
-  document.getElementById("discount").textContent = "−" + money(subtotal-total);
-  document.getElementById("total").textContent = money(total);
+function cartdraw(){
+  const ids=Object.keys(C);
+  let subtotal=0,total=0,count=0;
+  document.getElementById("cartitems").innerHTML=ids.length
+    ?ids.map(id=>{
+      const p=P.find(x=>String(x.id)===String(id));
+      if(!p)return "";
+      const qty=C[id],price=Number(p.p)||0,old=Number(p.o)||0;
+      subtotal+=old*qty;total+=price*qty;count+=qty;
+      return `<div class="cartrow">
+        <strong>${safeText(p.n)}</strong><br>
+        ${money(price)} × ${qty}<br>
+        <button class="btn remove" onclick="change('${safeText(id)}',-1)">−</button>
+        <button class="btn remove" onclick="change('${safeText(id)}',1)">+</button>
+        <strong>${money(price*qty)}</strong>
+      </div>`;
+    }).join("")
+    :"কার্ট খালি";
+  document.getElementById("count").textContent=count;
+  document.getElementById("subtotal").textContent=money(subtotal);
+  document.getElementById("discount").textContent="−"+money(subtotal-total);
+  document.getElementById("total").textContent=money(total);
 }
 
-document.getElementById("search").addEventListener("input", draw);
+document.getElementById("search").addEventListener("input",draw);
 
-document.getElementById("orderForm").addEventListener("submit", function(event) {
+document.getElementById("orderForm").addEventListener("submit",function(event){
   event.preventDefault();
+  const ids=Object.keys(C);
+  if(!ids.length){alert("আগে কার্টে পণ্য যোগ করুন।");return;}
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const address=document.getElementById("customerAddress").value.trim();
+  if(!name||!phone||!address){alert("সব তথ্য লিখুন।");return;}
 
-  const ids = Object.keys(C);
-  if (!ids.length) {
-    alert("আগে কার্টে পণ্য যোগ করুন।");
-    document.getElementById("cart").scrollIntoView({behavior:"smooth"});
-    return;
-  }
-
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
-  const address = document.getElementById("customerAddress").value.trim();
-
-  if (!name || !phone || !address) {
-    alert("নাম, মোবাইল নম্বর ও সম্পূর্ণ ঠিকানা লিখুন।");
-    return;
-  }
-
-  let total = 0;
-  const rows = ids.map(id => {
-    const p = P.find(x => String(x.id) === String(id));
-    if (!p) return "";
-    const line = (Number(p.p) || 0) * C[id];
-    total += line;
+  let total=0;
+  const rows=ids.map(id=>{
+    const p=P.find(x=>String(x.id)===String(id));
+    if(!p)return "";
+    const line=(Number(p.p)||0)*C[id];total+=line;
     return `${p.n} × ${C[id]} = ${money(line)}`;
   }).filter(Boolean).join("\n");
 
-  const message =
-    "আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই।\n\n" +
-    "নাম: " + name + "\n" +
-    "মোবাইল: " + phone + "\n" +
-    "সম্পূর্ণ ঠিকানা: " + address + "\n\n" +
-    "অর্ডারের তালিকা:\n" + rows + "\n\n" +
-    "সর্বমোট পণ্যের দাম: " + money(total) +
-    "\nডেলিভারি চার্জ প্রযোজ্য হতে পারে।" +
-    "\n\nদয়া করে অর্ডারটি নিশ্চিত করুন।";
-
-  window.location.href =
-    "https://wa.me/8801865146318?text=" + encodeURIComponent(message);
+  const message="আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই.\n\n"+
+    "নাম: "+name+"\nমোবাইল: "+phone+"\nসম্পূর্ণ ঠিকানা: "+address+
+    "\n\nঅর্ডারের তালিকা:\n"+rows+"\n\nসর্বমোট পণ্যের দাম: "+money(total)+
+    "\nডেলিভারি চার্জ প্রযোজ্য হতে পারে।";
+  window.location.href="https://wa.me/8801865146318?text="+encodeURIComponent(message);
 });
 
-/* অ্যাডমিনে যোগ করা পণ্য একই Firebase থেকে সরাসরি দেখাবে */
-db.collection("products").onSnapshot(snapshot => {
-  P = snapshot.docs.map(doc => {
-    const p = doc.data();
-
+db.collection("products").onSnapshot(snapshot=>{
+  P=snapshot.docs.map(doc=>{
+    const p=doc.data();
     return {
-      id: doc.id,
-      n: String(p.name || ""),
-      d: String(p.desc || p.description || ""),
-      p: Number(p.price) || 0,
-      o: Number(p.oldPrice ?? p.old ?? p.regularPrice ?? 0) || 0,
-      img: String(
-        p.image || p.imageUrl || p.imageURL ||
-        p.photoURL || p.photo || p.image_url || ""
-      ),
-      e: "📦",
-      r: String(p.rating || "5.0"),
-      s: Number(p.stock ?? p.quantity ?? 0) || 0
+      id:doc.id,
+      n:String(p.name||"নাম নেই"),
+      d:String(p.desc||p.description||""),
+      p:Number(p.price)||0,
+      o:Number(p.oldPrice??p.old??p.regularPrice??0)||0,
+      img:String(p.image||p.imageUrl||p.imageURL||p.photoURL||p.photo||p.image_url||""),
+      r:String(p.rating||"5.0"),
+      s:Number(p.stock??p.quantity??0)||0
     };
   });
-
   draw();
-}, error => {
-  console.error("Firebase product error:", error);
-  document.getElementById("products").textContent =
-    "পণ্য লোড হচ্ছে না। ইন্টারনেট অথবা Firebase Firestore Rules পরীক্ষা করুন।";
+},error=>{
+  console.error(error);
+  document.getElementById("products").textContent=
+    "পণ্য লোড হচ্ছে না। ইন্টারনেট বা Firebase Rules পরীক্ষা করুন।";
 });
 </script>
 </body>

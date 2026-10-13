@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fixed Price BD | Online Store</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5faf7;color:#17352f;font-family:system-ui,sans-serif}header,footer{background:linear-gradient(110deg,#004a43,#00815f);color:white;padding:16px 4%;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.logo{font-size:25px;font-weight:900}.logo span{color:#ffd52b}.search{flex:1;min-width:180px}.search input{width:100%;padding:12px;border:0;border-radius:10px}nav{display:flex;gap:20px;padding:14px 4%;background:white;overflow:auto;white-space:nowrap}nav a{color:#17352f;font-weight:bold;text-decoration:none}.wrap{max-width:1300px;margin:auto;padding:18px}.hero{padding:28px;border-radius:16px;background:linear-gradient(100deg,#ffe5ef,#e2ffdf,#fff0c6);display:flex;justify-content:space-between;align-items:center;gap:15px}.hero h1{font-size:clamp(30px,5vw,55px);margin:0;color:#005247}.tag{background:#ffdc28;padding:8px 14px;border-radius:9px;font-weight:900}.heroart{font-size:65px}.products{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.product,.feature,.cart{background:white;border:1px solid #dce9e4;border-radius:13px;padding:10px;min-width:0}.pic{height:130px;border-radius:9px;background:linear-gradient(135deg,#fce4e7,#e8f5ee);display:grid;place-items:center;font-size:55px;position:relative;overflow:hidden}.pic img{width:100%;height:100%;object-fit:contain}.badge{position:absolute;top:8px;left:8px;background:#e9233a;color:white;border-radius:30px;padding:4px 7px;font-size:12px;font-weight:bold}.product h3{font-size:14px;min-height:36px}.old{text-decoration:line-through;color:#718980}.now{color:#e9233a;font-size:20px;font-weight:900}.save{display:inline-block;background:#d7f7df;padding:5px 8px;border-radius:20px;font-size:12px}.rating{font-size:12px;color:#aa7200;margin:9px 0}.btn{background:#00845f;color:white;border:0;border-radius:8px;padding:10px;font-weight:bold;cursor:pointer;width:100%;margin-top:7px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}.feature{padding:18px}.cart{margin:20px 0;padding:16px}.cartrow{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #e3eeea;padding:8px 0}.total{font-size:20px;color:#e9233a;font-weight:900}.muted{color:#607872;font-size:13px}.address-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.address-form input,.address-form textarea{width:100%;padding:12px;border:1px solid #cbdad4;border-radius:8px;font:inherit;background:white}.address-form textarea{min-height:85px;resize:vertical}.address-form .full{grid-column:1/-1}.address-title{margin-bottom:5px}@media(max-width:950px){.products{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.pic{height:110px}.features{grid-template-columns:1fr}.wrap{padding:10px}.hero{padding:18px}.heroart{font-size:40px}.address-form{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="logo">🛍 Fixed Price <span>BD</span><div class="muted" style="color:white">Retail & Wholesale</div></div><div class="search"><input id="search" placeholder="পণ্য খুঁজুন..." oninput="draw()"></div><div>🛒 কার্ট <b id="count">0</b></div><div>WhatsApp & imo<br><b style="color:#ffdc28">01865146318</b></div></header>
+<nav><a href="#">⌂ হোম</a><a href="#products">সব পণ্য</a><a href="#products">ব্রা ও পেন্টি</a><a href="#products">নাইটি</a><a href="#products">বেল্ট</a><a href="#products">স্কিন কেয়ার</a><a href="#products">বিউটি প্রোডাক্ট</a><a href="#products">ইলেকট্রনিক</a><a href="#products">অফার</a></nav>
+<main class="wrap"><section class="hero"><div><div class="muted">FIXED PRICE BD</div><h1>Retail & Wholesale</h1><p><span class="tag">সেরা পণ্য, সেরা দাম!</span></p><p>✅ মানসম্মত পণ্য　🚚 সারা বাংলাদেশে ডেলিভারি　🕒 ২৪ ঘণ্টা অর্ডার</p><a class="btn" style="display:inline-block;width:auto;text-decoration:none" href="#products">পণ্য দেখুন →</a></div><div class="heroart">🎀 🧴 🩱</div></section>
+<h2 id="products">🔥 জনপ্রিয় পণ্য</h2><div class="products" id="grid"></div>
+<div class="features"><div class="feature">💯 <b>ডিসকাউন্ট অটো হিসাব</b><p class="muted">আগের দাম ও অফার দাম থেকে ছাড় হিসাব হবে।</p></div><div class="feature">🛍️ <b>সুন্দর পণ্যের কার্ড</b><p class="muted">ছবি, দাম, ছাড় ও কার্টের তথ্য।</p></div><div class="feature">🚚 <b>হোম ডেলিভারি</b><p class="muted">ঢাকা ১–২ দিন | অন্যান্য ১–৩ দিন</p></div></div>
+<section class="cart"><h2>🛒 আপনার কার্ট (<span id="count2">0</span>)</h2><div id="cartitems">কার্ট খালি</div><div class="cartrow"><span>মোট দাম</span><b id="subtotal">৳0</b></div><div class="cartrow"><span>ডিসকাউন্ট</span><b id="discount">৳0</b></div><div class="cartrow total"><span>সর্বমোট</span><b id="total">৳0</b></div>
+<h3 class="address-title">📦 ডেলিভারির ঠিকানা</h3><div class="address-form"><input id="buyerName" autocomplete="name" placeholder="আপনার সম্পূর্ণ নাম *"><input id="buyerPhone" type="tel" autocomplete="tel" placeholder="মোবাইল নম্বর *"><input id="buyerDivision" placeholder="বিভাগ *" value="রংপুর"><input id="buyerDistrict" placeholder="জেলা *"><input id="buyerUpazila" placeholder="উপজেলা / থানা *"><textarea class="full" id="buyerAddress" placeholder="গ্রাম, বাড়ি, রাস্তা ও বিস্তারিত ঠিকানা *"></textarea></div>
+<button class="btn" onclick="checkout()">WhatsApp-এ অর্ডার করুন</button></section><p class="muted">খুচরা ও পাইকারি বিক্রি করা হয়।</p></main>
+<footer><div>📣 খুচরা ও পাইকারি বিক্রি করা হয়<br>Retail & Wholesale</div><div>WhatsApp & imo: 01865146318</div><div>🏠 সারা বাংলাদেশে হোম ডেলিভারি সুবিধা</div></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",
+  authDomain: "fixed-price-bd.firebaseapp.com",
+  projectId: "fixed-price-bd",
+  storageBucket: "fixed-price-bd.firebasestorage.app",
+  messagingSenderId: "1055121018003",
+  appId: "1:1055121018003:web:f1bcebcb16376fa8bb9166",
+  measurementId: "G-BWZF99N2TV"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+let P = [], C = {};
+const DEMO_PRODUCTS = [
+{id:'demo-semis-bra-genji-6pcs',n:'৬ পিস সেমিস ব্রা (Genji)',d:'সুন্দর ফিটিং, আরামদায়ক',e:'🎀',o:1200,p:350,img:''},
+{id:'demo-jute-full-net-bra',n:'Jute Full Net Bra',d:'হালকা ও আরামদায়ক',e:'👙',o:370,p:150,img:''},
+{id:'demo-hot-wax-beans',n:'Depilatory Hot Wax Beans',d:'ওয়াক্সিংয়ের জন্য',e:'🧴',o:396,p:250,img:''},
+{id:'demo-tono-jelly-100ml',n:'TONO HIME Jelly (100ml)',d:'স্কিন কেয়ার জেল',e:'🫙',o:250,p:120,img:''}
+];
+const money=n=>"৳"+Math.round(Number(n||0)).toLocaleString("en-US");
+const pct=p=>Number(p.o)>0?Math.max(0,Math.round((p.o-p.p)/p.o*100)):0;
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function draw(){
+ const q=(document.getElementById("search").value||"").trim().toLowerCase();
+ const list=P.filter(p=>(p.n+" "+p.d).toLowerCase().includes(q));
+ document.getElementById("grid").innerHTML=list.length?list.map(p=>`<article class="product"><div class="pic"><span class="badge">${pct(p)}% ছাড়</span>${p.img&&/^https?:\/\//i.test(p.img)?`<img src="${safe(p.img)}" alt="${safe(p.n)}" style="width:100%;height:100%;object-fit:contain" onerror="this.style.display='none'">`:safe(p.e||"📦")}</div><h3>${safe(p.n)}</h3><div class="muted">${safe(p.d||"")}</div><p><span class="old">${money(p.o)}</span> <span class="now">${money(p.p)}</span></p><span class="save">সাশ্রয় ${money(Math.max(0,p.o-p.p))}</span><button class="btn" onclick="add('${safe(p.id)}')">🛒 কার্টে নিন</button></article>`).join(""):"কোনো পণ্য পাওয়া যায়নি।";
+}
+function add(id){C[id]=(C[id]||0)+1;cartdraw()}
+function change(id,n){C[id]=(C[id]||0)+n;if(C[id]<=0)delete C[id];cartdraw()}
+function cartdraw(){
+ const ids=Object.keys(C);let cnt=ids.reduce((s,id)=>s+C[id],0),sub=0,off=0;
+ document.getElementById("count").textContent=cnt;document.getElementById("count2").textContent=cnt;
+ document.getElementById("cartitems").innerHTML=ids.length?ids.map(id=>{let p=P.find(x=>String(x.id)===String(id));if(!p)return "";sub+=p.p*C[id];off+=Math.max(0,p.o-p.p)*C[id];return `<div class="cartrow"><span>${safe(p.n)}<br><small>${money(p.p)} × ${C[id]}</small><br><button onclick="change('${safe(id)}',-1)">−</button> ${C[id]} <button onclick="change('${safe(id)}',1)">+</button></span><b>${money(p.p*C[id])}</b></div>`}).join(""):"কার্ট খালি";
+ document.getElementById("subtotal").textContent=money(sub+off);document.getElementById("discount").textContent="−"+money(off);document.getElementById("total").textContent=money(sub);
+}
+function checkout(){
+ const ids=Object.keys(C);if(!ids.length){alert("আগে কার্টে পণ্য যোগ করুন।");return}
+ const name=document.getElementById("buyerName").value.trim(),phone=document.getElementById("buyerPhone").value.trim(),division=document.getElementById("buyerDivision").value.trim(),district=document.getElementById("buyerDistrict").value.trim(),upazila=document.getElementById("buyerUpazila").value.trim(),address=document.getElementById("buyerAddress").value.trim();
+ if(!name||!phone||!division||!district||!upazila||!address){alert("অর্ডার করার আগে নাম, মোবাইল, বিভাগ, জেলা, উপজেলা/থানা ও বিস্তারিত ঠিকানা পূরণ করুন।");return}
+ const rows=ids.map(id=>{const p=P.find(x=>String(x.id)===String(id));return p?p.n+" × "+C[id]+" = "+money(p.p*C[id]):""}).filter(Boolean).join("\n");
+ const total=ids.reduce((sum,id)=>{const p=P.find(x=>String(x.id)===String(id));return sum+(p?p.p*C[id]:0)},0);
+ const msg="আসসালামু আলাইকুম, Fixed Price BD থেকে অর্ডার করতে চাই:\n\nপণ্যের বিবরণ:\n"+rows+"\n\nমোট: "+money(total)+"\n\nকাস্টমারের তথ্য:\nনাম: "+name+"\nমোবাইল: "+phone+"\nবিভাগ: "+division+"\nজেলা: "+district+"\nউপজেলা/থানা: "+upazila+"\nসম্পূর্ণ ঠিকানা: "+address;
+ window.location.href="https://wa.me/8801865146318?text="+encodeURIComponent(msg);
+}
+function loadProducts(){
+ const grid=document.getElementById("grid");grid.textContent="পণ্য লোড হচ্ছে…";
+ db.collection("products").get().then(snapshot=>{
+  P=snapshot.docs.map(doc=>{const x=doc.data();return {id:doc.id,n:String(x.name||"নামহীন পণ্য"),p:Number(x.price)||0,o:Number(x.oldPrice??x.old??x.regularPrice??0)||0,d:String(x.desc||x.description||""),img:String(x.image||x.imageUrl||x.imageURL||x.photoURL||x.photo||x.image_url||""),e:String(x.emoji||"🛍️")}});
+  if(!P.length)P=DEMO_PRODUCTS.map(x=>({...x}));draw();cartdraw();
+ }).catch(err=>{console.error(err);grid.textContent="পণ্য লোড হচ্ছে না। ইন্টারনেট সংযোগ ও Firestore Rules পরীক্ষা করুন।"});
+}
+document.getElementById("search").addEventListener("input",draw);loadProducts();
+</script></body></html>

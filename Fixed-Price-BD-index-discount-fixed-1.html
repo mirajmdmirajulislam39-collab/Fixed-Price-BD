@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fixed Price BD | অনলাইন শপ</title>
+<meta name="theme-color" content="#087568">
+<style>
+*{box-sizing:border-box}:root{--green:#087568;--dark:#064e47;--gold:#f5bd45;--bg:#f4f8f6}
+body{margin:0;font-family:system-ui,"Noto Sans Bengali",sans-serif;background:var(--bg);color:#19332f}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+header{background:linear-gradient(135deg,#064e47,#0d9488);color:white;padding:22px 15px}
+.top{max-width:1100px;margin:auto}.brand{font-size:27px;font-weight:900;letter-spacing:.3px}.tag{margin:6px 0 0;font-size:14px}
+.hero{max-width:1100px;margin:18px auto 0;padding:23px 18px;border-radius:18px;background:#fff8e7;color:#23443d}
+.hero h2{margin:0 0 8px;font-size:23px}.hero p{margin:0;line-height:1.7}
+main{max-width:1100px;margin:18px auto;padding:0 12px}.toolbar{display:flex;gap:9px;margin:18px 0;flex-wrap:wrap}
+.toolbar input{flex:1;min-width:160px}input,select,textarea{width:100%;padding:12px;border:1px solid #d4e1dc;border-radius:10px;background:white;color:#19332f}
+.toolbar select{width:auto;min-width:145px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 13px}
+.section-title h2{font-size:21px;margin:0}.count{font-size:13px;color:#55746c}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:white;border:1px solid #e2ece7;border-radius:15px;overflow:hidden;box-shadow:0 3px 12px #153b3010;display:flex;flex-direction:column}
+.photo{height:165px;background:#edf5f1;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#71877e;font-size:13px;text-align:center;position:relative}.discount-badge{position:absolute;top:8px;left:8px;z-index:2;background:#e53935;color:#fff;padding:5px 9px;border-radius:8px;font-size:13px;font-weight:900;line-height:1.2;box-shadow:0 2px 7px #0002;pointer-events:none}
+.photo img{width:100%;height:100%;object-fit:contain}.details{padding:12px;display:flex;flex-direction:column;flex:1}
+.name{font-weight:800;font-size:15px;overflow-wrap:anywhere}.desc{font-size:13px;color:#65766f;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere}
+.price{font-size:19px;font-weight:900;color:#d44732;margin-top:auto}.old{font-size:12px;color:#87928d;text-decoration:line-through}
+.btn{border:0;border-radius:10px;padding:11px 12px;font-weight:750}.primary{background:var(--green);color:white}.primary:active{background:var(--dark)}.gold{background:var(--gold);color:#49340a}.full{width:100%;margin-top:10px}
+.cartbox,.checkout{background:white;border:1px solid #e0eae5;border-radius:16px;padding:16px;margin-top:22px}.cartbox h2,.checkout h2{margin:0 0 13px;font-size:20px}
+.cartrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #edf1ee}.cartrow:last-child{border-bottom:0}
+.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid #d8e5df;background:#f5faf7;border-radius:8px;width:30px;height:30px}
+.total{display:flex;justify-content:space-between;font-size:19px;font-weight:900;padding-top:14px}.formgrid{display:grid;grid-template-columns:1fr;gap:12px}
+label{display:block;font-size:14px;font-weight:700;margin-bottom:5px}.note{font-size:13px;color:#61746c;line-height:1.7}
+.empty{text-align:center;background:white;border-radius:14px;padding:28px;color:#667b73;grid-column:1/-1}
+footer{margin-top:28px;background:#073f39;color:#fff;text-align:center;padding:25px 14px;line-height:1.9}footer a{color:#ffe29a}.hidden{display:none!important}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:220px}.formgrid{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.photo{height:225px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">🛍️ FIXED PRICE BD</div><p class="tag">আপনার বিশ্বস্ত অনলাইন শপ • খুচরা ও পাইকারি</p></div></header>
+<div class="hero"><h2>পছন্দের পণ্য কিনুন সহজেই! ✨</h2><p>সাশ্রয়ী দামে কেনাকাটা করুন। কার্টে পণ্য যোগ করে আপনার নাম, মোবাইল ও ঠিকানা দিয়ে WhatsApp-এ অর্ডার পাঠান।</p></div>
+<main>
+<div class="toolbar"><input id="search" type="search" placeholder="🔎 পণ্যের নাম খুঁজুন"><select id="sort" aria-label="দাম অনুযায়ী সাজান"><option value="">ডিফল্ট</option><option value="low">দাম: কম থেকে বেশি</option><option value="high">দাম: বেশি থেকে কম</option></select></div>
+<div class="section-title"><h2>🛍️ আমাদের পণ্য</h2><span class="count" id="count">লোড হচ্ছে…</span></div>
+<div id="products" class="grid"><div class="empty">পণ্য লোড হচ্ছে…</div></div>
+<section class="cartbox" id="cart"><h2>🛒 আপনার শপিং কার্ট</h2><div id="cartItems" class="note">এখনো কার্টে পণ্য যোগ করেননি।</div><div class="total"><span>মোট পণ্যমূল্য</span><span id="cartTotal">৳0</span></div><button id="goCheckout" class="btn gold full">ঠিকানা দিয়ে অর্ডার করুন</button></section>
+<section class="checkout" id="checkout">
+<h2>📦 অর্ডারের তথ্য</h2><p class="note">সঠিক তথ্য দিন, যাতে আপনার অর্ডারটি পৌঁছে দেওয়া যায়। কাস্টমার লগইন প্রয়োজন নেই।</p>
+<form id="orderForm"><div class="formgrid">
+<div><label for="customerName">আপনার নাম *</label><input id="customerName" required maxlength="100" placeholder="সম্পূর্ণ নাম"></div>
+<div><label for="customerPhone">মোবাইল নম্বর *</label><input id="customerPhone" required type="tel" inputmode="tel" maxlength="20" placeholder="01XXXXXXXXX"></div>
+<div class="wide"><label for="deliveryArea">ডেলিভারি এলাকা *</label><select id="deliveryArea" required><option value="outside">ঢাকার বাইরে — ডেলিভারি চার্জ ৳১৩০</option><option value="inside">ঢাকার ভিতরে — ডেলিভারি চার্জ ৳৮০</option></select></div>
+<div class="wide"><label for="customerAddress">সম্পূর্ণ ঠিকানা *</label><textarea id="customerAddress" required maxlength="500" rows="3" placeholder="বাড়ি/গ্রাম, ওয়ার্ড, ইউনিয়ন, উপজেলা, জেলা"></textarea></div>
+<div class="wide"><label for="customerNote">অতিরিক্ত নির্দেশনা (ঐচ্ছিক)</label><input id="customerNote" maxlength="250" placeholder="যেমন: রং বা সাইজ"></div>
+</div>
+<div class="total"><span>ডেলিভারি চার্জ</span><span id="deliveryCharge">৳130</span></div><div class="total"><span>সর্বমোট বিল</span><span id="grandTotal">৳130</span></div>
+<p class="note">🚚 ঢাকায় সাধারণত ১–২ দিন এবং ঢাকার বাইরে ১–৩ দিন লাগতে পারে।</p><button class="btn primary full" type="submit">WhatsApp-এ অর্ডার পাঠান</button></form>
+</section></main>
+<footer><strong>FIXED PRICE BD</strong><br>📢 খুচরা ও পাইকারি বিক্রি করা হয় 📢<br>Retail & Wholesale<br>📞 WhatsApp & imo: 01865146318<br>সারা বাংলাদেশে হোম ডেলিভারি সুবিধা<br>Home Delivery All Over Bangladesh<br><a href="https://wa.me/8801865146318" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন</a></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyA51VwuUTSCZAscEWhyyzhBJw4tntqHsMQ",authDomain:"fixed-price-bd.firebaseapp.com",projectId:"fixed-price-bd",storageBucket:"fixed-price-bd.firebasestorage.app",messagingSenderId:"1055121018003",appId:"1:1055121018003:web:f1bcebcb16376fa8bb9166",measurementId:"G-BWZF99N2TV"};
+const productsEl=document.getElementById("products"),cartItemsEl=document.getElementById("cartItems"),cart=new Map();let products=[];
+const safe=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const money=value=>"৳"+Number(value||0).toLocaleString("en-BD");
+function discountPercent(oldPrice,price){oldPrice=Number(oldPrice)||0;price=Number(price)||0;return oldPrice>price&&oldPrice>0?Math.round((oldPrice-price)/oldPrice*100):0;}
+function validImage(value){
+ const raw=String(value||"").trim();
+ if(/^data:image\/(?:png|jpe?g|webp|gif|avif);base64,/i.test(raw))return raw;
+ try{const u=new URL(raw);return ["https:","http:"].includes(u.protocol)?u.href:""}catch{return ""}
+}
+function renderProducts(){
+ const query=document.getElementById("search").value.trim().toLowerCase(),sort=document.getElementById("sort").value;
+ let list=products.filter(p=>p.name.toLowerCase().includes(query)||p.desc.toLowerCase().includes(query));
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ document.getElementById("count").textContent=list.length+"টি পণ্য";
+ if(!list.length){productsEl.innerHTML='<div class="empty">কোনো পণ্য পাওয়া যায়নি।</div>';return}
+ productsEl.innerHTML=list.map(p=>{const im=validImage(p.image),discount=discountPercent(p.old,p.price);return `<article class="product"><div class="photo">${discount?`<span class="discount-badge">-${discount}% OFF</span>`:""}${im?`<img loading="lazy" src="${safe(im)}" alt="${safe(p.name)}" onerror="this.remove();this.parentElement.textContent='ছবি পাওয়া যায়নি'">`:"পণ্যের ছবি নেই"}</div><div class="details"><div class="name">${safe(p.name)}</div>${p.desc?`<p class="desc">${safe(p.desc)}</p>`:""}<div class="price">${money(p.price)}</div>${p.old>p.price?`<div class="old">${money(p.old)}</div>`:""}<button class="btn primary full" data-add="${safe(p.id)}">কার্টে যোগ করুন</button></div></article>`}).join("");
+}
+function subtotal(){return [...cart.entries()].reduce((sum,[id,q])=>{const p=products.find(x=>x.id===id);return sum+(p?p.price*q:0)},0)}
+function deliveryFee(){return document.getElementById("deliveryArea").value==="inside"?80:130}
+function updateBill(){document.getElementById("deliveryCharge").textContent=money(deliveryFee());document.getElementById("grandTotal").textContent=money(subtotal()+deliveryFee())}
+function renderCart(){
+ const entries=[...cart.entries()];
+ if(!entries.length)cartItemsEl.textContent="এখনো কার্টে পণ্য যোগ করেননি।";
+ else cartItemsEl.innerHTML=entries.map(([id,q])=>{const p=products.find(x=>x.id===id);if(!p)return "";return `<div class="cartrow"><div><b>${safe(p.name)}</b><br><span class="note">${money(p.price)} × ${q} = ${money(p.price*q)}</span></div><div class="qty"><button type="button" data-minus="${safe(id)}" aria-label="একটি কমান">−</button><b>${q}</b><button type="button" data-plus="${safe(id)}" aria-label="একটি বাড়ান">+</button></div></div>`}).join("");
+ document.getElementById("cartTotal").textContent=money(subtotal());updateBill();
+}
+productsEl.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;const id=b.dataset.add;if(!products.some(p=>p.id===id))return;cart.set(id,(cart.get(id)||0)+1);renderCart()});
+cartItemsEl.addEventListener("click",e=>{const pl=e.target.closest("[data-plus]"),mi=e.target.closest("[data-minus]");if(pl){const id=pl.dataset.plus;cart.set(id,(cart.get(id)||0)+1)}if(mi){const id=mi.dataset.minus,q=(cart.get(id)||0)-1;if(q<=0)cart.delete(id);else cart.set(id,q)}renderCart()});
+document.getElementById("search").addEventListener("input",renderProducts);document.getElementById("sort").addEventListener("change",renderProducts);document.getElementById("deliveryArea").addEventListener("change",updateBill);
+document.getElementById("goCheckout").addEventListener("click",()=>document.getElementById("checkout").scrollIntoView({behavior:"smooth"}));
+document.getElementById("orderForm").addEventListener("submit",e=>{
+ e.preventDefault();const entries=[...cart.entries()];if(!entries.length){alert("প্রথমে কার্টে পণ্য যোগ করুন।");document.getElementById("cart").scrollIntoView({behavior:"smooth"});return}
+ const name=document.getElementById("customerName").value.trim(),phone=document.getElementById("customerPhone").value.trim(),address=document.getElementById("customerAddress").value.trim(),note=document.getElementById("customerNote").value.trim(),fee=deliveryFee(),sub=subtotal(),area=document.getElementById("deliveryArea").value==="inside"?"ঢাকার ভিতরে":"ঢাকার বাইরে";
+ if(!name||!phone||!address){alert("নাম, মোবাইল নম্বর ও সম্পূর্ণ ঠিকানা পূরণ করুন।");return}
+ const lines=entries.map(([id,q])=>{const p=products.find(x=>x.id===id);return p?`${p.name} — ${q}টি × ${p.price} = ${p.price*q} টাকা`:""}).filter(Boolean);
+ const message=["আসসালামু আলাইকুম, Fixed Price BD-তে অর্ডার করতে চাই।","","পণ্যের তালিকা:",...lines,"","মোট পণ্যমূল্য: "+sub+" টাকা","ডেলিভারি এলাকা: "+area,"ডেলিভারি চার্জ: "+fee+" টাকা","সর্বমোট বিল: "+(sub+fee)+" টাকা","ক্রেতার নাম: "+name,"মোবাইল: "+phone,"সম্পূর্ণ ঠিকানা: "+address,note?"অতিরিক্ত নির্দেশনা: "+note:""].filter(Boolean).join("\n");
+ window.open("https://wa.me/8801865146318?text="+encodeURIComponent(message),"_blank","noopener");
+});
+try{
+ if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
+ firebase.firestore().collection("products").get().then(s=>{
+  products=s.docs.map(d=>{const p=d.data();return{id:d.id,name:String(p.name||"নামহীন পণ্য"),price:Number(p.price)||0,old:Number(p.oldPrice??p.old??p.regularPrice??0)||0,desc:String(p.desc||p.description||""),image:String(p.image||p.imageUrl||p.imageURL||p.photoURL||p.photo||p.image_url||p.image_url||p.picture||p.img||"")}});
+  renderProducts();renderCart();
+ }).catch(err=>{console.error(err);productsEl.innerHTML='<div class="empty">পণ্য লোড হচ্ছে না। ইন্টারনেট ও Firestore Rules পরীক্ষা করুন।</div>';document.getElementById("count").textContent="লোড করা যায়নি"});
+}catch(err){console.error(err);productsEl.innerHTML='<div class="empty">Firebase সংযোগে সমস্যা হয়েছে।</div>'}
+updateBill();
+</script>
+</body></html>

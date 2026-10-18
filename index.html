@@ -82,6 +82,26 @@ footer{margin-top:28px;background:linear-gradient(100deg,#064e3b,#087b4b);color:
 .review-form{display:grid;gap:9px}.review-form label{margin:0}.review-form input,.review-form textarea{padding:10px}.star-picker{display:flex;gap:5px;align-items:center}.star-choice{border:0;background:transparent;padding:2px;color:#c4ccc7;font-size:27px;line-height:1}.star-choice.selected{color:#f5b400}.review-submit{border:0;border-radius:10px;background:#087b4b;color:#fff;padding:11px;font-weight:900}.review-list{display:grid;gap:9px;margin-top:14px}.review-item{background:#f5faf6;border:1px solid #e3eee6;border-radius:12px;padding:10px}.review-item-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.review-name{font-weight:850;overflow-wrap:anywhere}.review-stars{color:#e9a900;white-space:nowrap;letter-spacing:1px}.review-comment{margin:6px 0 0;line-height:1.6;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.review-muted{color:#65786f;font-size:12px;line-height:1.6}
 @media(max-width:420px){.floating-actions{right:10px;bottom:12px}.float-action{padding:11px 13px;font-size:13px}.review-panel{right:10px;bottom:118px;width:calc(100vw - 20px)}}
 
+
+/* Per-product customer reviews */
+.product-reviews{border-top:1px solid #e5eee8;padding:11px 12px 13px;background:#fcfffd}
+.product-review-summary{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:850;color:#245540;margin-bottom:8px}
+.product-review-stars{color:#e9a900;letter-spacing:1px;white-space:nowrap}
+.product-review-list{display:grid;gap:7px;margin-bottom:10px}
+.product-review-item{border:1px solid #e5eee8;background:#f6fbf7;border-radius:9px;padding:8px;font-size:12px}
+.product-review-item-top{display:flex;justify-content:space-between;gap:7px;align-items:center}
+.product-review-name{font-weight:850;overflow-wrap:anywhere}
+.product-review-comment{margin:4px 0 0;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
+.product-review-muted{font-size:12px;color:#65786f;line-height:1.5}
+.product-review-form{display:grid;gap:7px}
+.product-review-form input,.product-review-form textarea{padding:9px;font-size:13px}
+.product-review-form label{font-size:12px;margin-bottom:3px}
+.product-review-star-picker{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+.product-review-star{border:0;background:transparent;padding:0 2px;color:#c4ccc7;font-size:23px;line-height:1}
+.product-review-star.selected{color:#f5b400}
+.product-review-submit{border:0;border-radius:9px;background:#087b4b;color:#fff;padding:9px;font-weight:850;font-size:13px}
+.product-review-status{font-size:12px;color:#65786f;line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -169,7 +189,7 @@ function renderProducts(){
  if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);
  document.getElementById("count").textContent=list.length+"টি পণ্য";
  if(!list.length){productsEl.innerHTML='<div class="empty">কোনো পণ্য পাওয়া যায়নি।</div>';return}
- productsEl.innerHTML=list.map(p=>{const im=validImage(p.image),discount=discountPercent(p.old,p.price);return `<article class="product"><div class="photo">${discount?`<span class="discount-badge">-${discount}% OFF</span>`:""}${im?`<img loading="lazy" src="${safe(im)}" alt="${safe(p.name)}" onerror="this.remove();this.parentElement.textContent='ছবি পাওয়া যায়নি'">`:"পণ্যের ছবি নেই"}</div><div class="details"><div class="name">${safe(p.name)}</div>${p.desc?`<p class="desc">${safe(p.desc)}</p>`:""}<div class="price">${money(p.price)}</div>${p.old>p.price?`<div class="old">${money(p.old)}</div>`:""}<button class="btn primary full" data-add="${safe(p.id)}">কার্টে যোগ করুন</button></div></article>`}).join("");
+ productsEl.innerHTML=list.map(p=>{const im=validImage(p.image),discount=discountPercent(p.old,p.price);return `<article class="product"><div class="photo">${discount?`<span class="discount-badge">-${discount}% OFF</span>`:""}${im?`<img loading="lazy" src="${safe(im)}" alt="${safe(p.name)}" onerror="this.remove();this.parentElement.textContent='ছবি পাওয়া যায়নি'">`:"পণ্যের ছবি নেই"}</div><div class="details"><div class="name">${safe(p.name)}</div>${p.desc?`<p class="desc">${safe(p.desc)}</p>`:""}<div class="price">${money(p.price)}</div>${p.old>p.price?`<div class="old">${money(p.old)}</div>`:""}<button class="btn primary full" data-add="${safe(p.id)}">কার্টে যোগ করুন</button></div><section class="product-reviews" data-review-product="${safe(p.id)}"><div class="product-review-summary"><span>⭐ পণ্যের রিভিউ</span><span class="product-review-stars" data-review-average>☆☆☆☆☆</span></div><div class="product-review-list" data-product-review-list><div class="product-review-muted">রিভিউ লোড হচ্ছে…</div></div><form class="product-review-form" data-product-review-form data-product-id="${safe(p.id)}"><div><label>আপনার নাম *</label><input name="reviewName" required maxlength="60" placeholder="নাম লিখুন"></div><div><label>রেটিং দিন *</label><div class="product-review-star-picker" data-product-star-picker><button type="button" class="product-review-star" data-product-star="1" aria-label="১ স্টার">★</button><button type="button" class="product-review-star" data-product-star="2" aria-label="২ স্টার">★</button><button type="button" class="product-review-star" data-product-star="3" aria-label="৩ স্টার">★</button><button type="button" class="product-review-star" data-product-star="4" aria-label="৪ স্টার">★</button><button type="button" class="product-review-star" data-product-star="5" aria-label="৫ স্টার">★</button><span class="product-review-muted" data-product-star-label>রেটিং নির্বাচন করুন</span></div></div><div><label>মন্তব্য *</label><textarea name="reviewComment" required maxlength="500" rows="2" placeholder="পণ্য সম্পর্কে আপনার অভিজ্ঞতা"></textarea></div><button class="product-review-submit" type="submit">এই পণ্যে রিভিউ দিন</button><div class="product-review-status" data-product-review-status role="status"></div></form></section></article>`}).join("");
 }
 function subtotal(){return [...cart.entries()].reduce((sum,[id,q])=>{const p=products.find(x=>x.id===id);return sum+(p?p.price*q:0)},0)}
 function deliveryFee(){return document.getElementById("deliveryArea").value==="inside"?80:130}
@@ -196,7 +216,7 @@ try{
  if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
  firebase.firestore().collection("products").get().then(s=>{
   products=s.docs.map(d=>{const p=d.data();return{id:d.id,name:String(p.name||"নামহীন পণ্য"),price:Number(p.price)||0,old:Number(p.oldPrice??p.old??p.regularPrice??0)||0,desc:String(p.desc||p.description||""),image:String(p.image||p.imageUrl||p.imageURL||p.photoURL||p.photo||p.image_url||p.image_url||p.picture||p.img||"")}});
-  renderProducts();renderCart();
+  renderProducts();renderCart();startProductReviewFeeds();
  }).catch(err=>{console.error(err);productsEl.innerHTML='<div class="empty">পণ্য লোড হচ্ছে না। ইন্টারনেট ও Firestore Rules পরীক্ষা করুন।</div>';document.getElementById("count").textContent="লোড করা যায়নি"});
 }catch(err){console.error(err);productsEl.innerHTML='<div class="empty">Firebase সংযোগে সমস্যা হয়েছে।</div>'}
 
@@ -217,6 +237,56 @@ function formatReviewDate(value){try{if(!value)return "";const d=value.toDate?va
 function renderReviews(snapshot){const list=document.getElementById("reviewList");if(snapshot.empty){list.innerHTML='<div class="review-muted">এখনো কোনো রিভিউ নেই। প্রথম রিভিউটি আপনিই দিন।</div>';return}list.innerHTML=snapshot.docs.map(doc=>{const r=doc.data()||{},rating=Math.max(1,Math.min(5,Number(r.rating)||5)),name=safe(String(r.name||"কাস্টমার")),comment=safe(String(r.comment||"")),date=formatReviewDate(r.createdAt);return `<article class="review-item"><div class="review-item-top"><span class="review-name">${name}</span><span class="review-stars" aria-label="${rating} out of 5 stars">${"★".repeat(rating)}${"☆".repeat(5-rating)}</span></div><p class="review-comment">${comment}</p>${date?`<div class="review-muted">${safe(date)}</div>`:""}</article>`}).join("")}
 function startReviewFeed(){const list=document.getElementById("reviewList");try{firebase.firestore().collection("reviews").orderBy("createdAt","desc").limit(10).onSnapshot(renderReviews,err=>{console.error("Review feed:",err);list.innerHTML='<div class="review-muted">রিভিউ লোড করা যায়নি। Firebase Firestore Rules পরীক্ষা করুন।</div>'})}catch(err){console.error(err);list.innerHTML='<div class="review-muted">রিভিউ লোড করা যায়নি।</div>'}}
 document.getElementById("reviewForm").addEventListener("submit",async e=>{e.preventDefault();const name=document.getElementById("reviewName").value.trim(),comment=document.getElementById("reviewComment").value.trim(),status=document.getElementById("reviewStatus"),submit=document.getElementById("reviewSubmitBtn");if(!name||!comment||selectedReviewStars<1){status.textContent="নাম, ১–৫ স্টার রেটিং ও মন্তব্য পূরণ করুন।";return}if(!window.firebase||!firebase.apps.length){status.textContent="Firebase সংযোগ পাওয়া যায়নি।";return}submit.disabled=true;status.textContent="রিভিউ জমা হচ্ছে…";try{await firebase.firestore().collection("reviews").add({name:name.slice(0,60),rating:selectedReviewStars,comment:comment.slice(0,500),createdAt:firebase.firestore.FieldValue.serverTimestamp()});document.getElementById("reviewForm").reset();selectedReviewStars=0;paintReviewStars();status.textContent="ধন্যবাদ! আপনার রিভিউ জমা হয়েছে।"}catch(err){console.error("Review submit:",err);status.textContent="রিভিউ জমা হয়নি। Firestore Rules/ইন্টারনেট পরীক্ষা করুন।"}finally{submit.disabled=false}});
+
+/* Per-product 5-star reviews. Uses the existing Firestore "reviews" collection. */
+function renderProductReviewFeed(productId,snapshot){
+ const section=[...document.querySelectorAll("[data-review-product]")].find(el=>el.dataset.reviewProduct===productId);
+ if(!section)return;
+ const list=section.querySelector("[data-product-review-list]"),avgEl=section.querySelector("[data-review-average]");
+ if(!snapshot||snapshot.empty){list.innerHTML='<div class="product-review-muted">এখনো কোনো রিভিউ নেই। প্রথম রিভিউটি আপনিই দিন।</div>';avgEl.textContent="☆☆☆☆☆";return}
+ const docs=[...snapshot.docs].sort((a,b)=>{const av=a.data().createdAt,bv=b.data().createdAt;const at=av&&av.toMillis?av.toMillis():0,bt=bv&&bv.toMillis?bv.toMillis():0;return bt-at}).slice(0,5),ratings=docs.map(d=>Math.max(1,Math.min(5,Number((d.data()||{}).rating)||5)));
+ const avg=ratings.reduce((a,b)=>a+b,0)/ratings.length;
+ avgEl.textContent="★".repeat(Math.round(avg))+"☆".repeat(5-Math.round(avg))+" "+avg.toFixed(1)+" ("+docs.length+")";
+ list.innerHTML=docs.map(doc=>{const r=doc.data()||{},rating=Math.max(1,Math.min(5,Number(r.rating)||5));return '<article class="product-review-item"><div class="product-review-item-top"><span class="product-review-name">'+safe(r.name||"কাস্টমার")+'</span><span class="product-review-stars">'+"★".repeat(rating)+"☆".repeat(5-rating)+'</span></div><p class="product-review-comment">'+safe(r.comment||"")+'</p></article>'}).join("");
+}
+const productReviewUnsubscribers=new Map();
+function startProductReviewFeeds(){
+ products.forEach(p=>{
+  if(productReviewUnsubscribers.has(p.id))return;
+  try{
+   const unsub=firebase.firestore().collection("reviews").where("productId","==",p.id).onSnapshot(s=>renderProductReviewFeed(p.id,s),err=>{
+    console.error("Product review feed:",err);
+    const section=[...document.querySelectorAll("[data-review-product]")].find(el=>el.dataset.reviewProduct===p.id);
+    if(section)section.querySelector("[data-product-review-list]").innerHTML='<div class="product-review-muted">রিভিউ লোড হয়নি। Firestore Rules/ইনডেক্স পরীক্ষা করুন।</div>';
+   });
+   productReviewUnsubscribers.set(p.id,unsub);
+  }catch(err){console.error("Product review feed:",err)}
+ });
+}
+function paintProductReviewStars(form){
+ const rating=Number(form.dataset.selectedStars||0);
+ form.querySelectorAll("[data-product-star]").forEach(b=>{const on=Number(b.dataset.productStar)<=rating;b.classList.toggle("selected",on);b.setAttribute("aria-pressed",String(Number(b.dataset.productStar)===rating))});
+ const label=form.querySelector("[data-product-star-label]");if(label)label.textContent=rating?rating+"/5 স্টার":"রেটিং নির্বাচন করুন";
+}
+productsEl.addEventListener("click",e=>{
+ const star=e.target.closest("[data-product-star]");if(!star)return;
+ const form=star.closest("[data-product-review-form]");if(!form)return;
+ form.dataset.selectedStars=star.dataset.productStar;paintProductReviewStars(form);
+});
+productsEl.addEventListener("submit",async e=>{
+ const form=e.target.closest("[data-product-review-form]");if(!form)return;
+ e.preventDefault();
+ const status=form.querySelector("[data-product-review-status]"),submit=form.querySelector('button[type="submit"]');
+ const name=String(form.elements.reviewName.value||"").trim(),comment=String(form.elements.reviewComment.value||"").trim(),rating=Number(form.dataset.selectedStars||0),productId=form.dataset.productId,product=products.find(p=>p.id===productId);
+ if(!name||!comment||rating<1){status.textContent="নাম, রেটিং ও মন্তব্য পূরণ করুন।";return}
+ if(!product){status.textContent="পণ্যটি পাওয়া যায়নি। পেজ রিফ্রেশ করুন।";return}
+ submit.disabled=true;status.textContent="রিভিউ জমা হচ্ছে…";
+ try{
+  await firebase.firestore().collection("reviews").add({productId,productName:product.name,name:name.slice(0,60),rating,comment:comment.slice(0,500),createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+  form.reset();form.dataset.selectedStars="0";paintProductReviewStars(form);status.textContent="ধন্যবাদ! এই পণ্যের রিভিউ জমা হয়েছে।";
+ }catch(err){console.error("Product review submit:",err);status.textContent="রিভিউ জমা হয়নি। Firestore Rules/ইন্টারনেট পরীক্ষা করুন।"}
+ finally{submit.disabled=false}
+});
 
 startReviewFeed();
 syncFloatingCartCount();
